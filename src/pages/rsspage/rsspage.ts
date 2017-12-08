@@ -11,9 +11,18 @@ declare var RSSParser;
 export class RsspagePage {
 
   targetUrl: string;
-  entries: Array<any> = [];
+  bnEntries: Array<any> = [];
+  headlineEntries: Array<any> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, public modalCtrl: ModalController) {
+  }
+  
+  ionViewDidLoad() {
+    console.clear();
+    console.log('Hello, beautiful people of the Philippines!');
+
+    this.parseBNUrls();
+    this.parseHeadlineUrls();
   }
 
   openUrl(entry){
@@ -29,15 +38,21 @@ export class RsspagePage {
     // modal.present();
   }
 
-  parseUrl(){
-    this.parseUrlWrapper().then((entries: Array<any>) => {
-      this.entries = entries;
+  parseBNUrls(){
+    this.parseUrlWrapper1().then((bnEntries: Array<any>) => {
+      this.bnEntries = bnEntries;
     });
   }
 
-  parseUrlWrapper(){
+  parseHeadlineUrls(){
+    this.parseUrlWrapper2().then((headlineEntries: Array<any>) => {
+      this.headlineEntries = headlineEntries;
+    });
+  }
+
+  parseUrlWrapper1(){
     return new Promise((resolve,reject) => {
-      RSSParser.parseURL('https://www.saipantribune.com/index.php/feed/', function(err,parsed){
+      RSSParser.parseURL('https://www.saipantribune.com/index.php/category/breaking-news/feed/', function(err,parsed){
         console.log(parsed.feed.title);
         console.log(parsed.feed.entries);
         if(err){
@@ -48,11 +63,17 @@ export class RsspagePage {
     });
   }
 
-  ionViewDidLoad() {
-    console.clear();
-    console.log('Hello, beautiful people of the Philippines!');
-
-    this.parseUrl();
+  parseUrlWrapper2(){
+    return new Promise((resolve,reject) => {
+      RSSParser.parseURL('https://www.saipantribune.com/index.php/category/headlines/feed/', function(err,parsed){
+        console.log(parsed.feed.title);
+        console.log(parsed.feed.entries);
+        if(err){
+          reject(err);
+        }
+        resolve(parsed.feed.entries);
+      });
+    });
   }
 
 }

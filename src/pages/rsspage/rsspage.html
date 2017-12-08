@@ -7,13 +7,30 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <!-- <ion-input [(ngModel)]="targetUrl" placeholder="Please enter and RSS/Atom Feed URL"></ion-input>
   <button ion-button (click)="parseUrl()">Fetch Feed</button> -->
   <ion-list>
-    <ion-item *ngFor="let entry of entries" (click)="openUrl(entry)">
+    <ion-list-header>
+      Breaking News
+    </ion-list-header>
+    <ion-item *ngFor="let entry of bnEntries" (click)="openUrl(entry)">
+      <h2>{{entry.title}}</h2>
+      <p>{{entry.pubDate}}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Headlines
+    </ion-list-header>
+    <ion-item *ngFor="let entry of headlineEntries" (click)="openUrl(entry)">
       <h2>{{entry.title}}</h2>
       <p>{{entry.pubDate}}</p>
     </ion-item>
   </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary"></ion-toolbar>
+</ion-footer>
