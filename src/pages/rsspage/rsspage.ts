@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 declare var RSSParser;
@@ -13,11 +13,20 @@ export class RsspagePage {
   targetUrl: string;
   entries: Array<any> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, public modalCtrl: ModalController) {
   }
 
   openUrl(entry){
     this.iab.create(entry.link,"_system");
+  }
+
+  openEntry(entry){
+    let data = {
+      entryData: entry 
+    }
+
+    // let modal = this.modalCtrl.create(EntryPage, data);
+    // modal.present();
   }
 
   parseUrl(){
@@ -28,7 +37,7 @@ export class RsspagePage {
 
   parseUrlWrapper(){
     return new Promise((resolve,reject) => {
-      RSSParser.parseURL(this.targetUrl, function(err,parsed){
+      RSSParser.parseURL('https://www.saipantribune.com/index.php/feed/', function(err,parsed){
         console.log(parsed.feed.title);
         console.log(parsed.feed.entries);
         if(err){
@@ -42,6 +51,8 @@ export class RsspagePage {
   ionViewDidLoad() {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
+
+    this.parseUrl();
   }
 
 }

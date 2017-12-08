@@ -1,21 +1,19 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>RSS Test</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Saipan Tribune</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-input [(ngModel)]="targetUrl" placeholder="Please enter and RSS/Atom Feed URL"></ion-input>
-  <button ion-button (click)="parseUrl()">Fetch Feed</button>
+  <!-- <ion-input [(ngModel)]="targetUrl" placeholder="Please enter and RSS/Atom Feed URL"></ion-input>
+  <button ion-button (click)="parseUrl()">Fetch Feed</button> -->
   <ion-list>
-    <ion-item-sliding *ngFor="let entry of entries">
-      <ion-item (click)="openUrl(entry)">
-        <h2>{{entry.title}}</h2>
-        {{entry.pubDate}}
-      </ion-item>
-    </ion-item-sliding>
+    <ion-item *ngFor="let entry of entries" (click)="openUrl(entry)">
+      <h2>{{entry.title}}</h2>
+      <p>{{entry.pubDate}}</p>
+    </ion-item>
   </ion-list>
 </ion-content>
