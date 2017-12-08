@@ -8,12 +8,14 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RsspagePage } from '../pages/rsspage/rsspage';
+import { EntryPage } from '../pages/entry/entry';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    RsspagePage
+    RsspagePage,
+    EntryPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,8 @@ import { RsspagePage } from '../pages/rsspage/rsspage';
   entryComponents: [
     MyApp,
     HomePage,
-    RsspagePage
+    RsspagePage,
+    EntryPage
   ],
   providers: [
     StatusBar,

@@ -14,7 +14,7 @@
     <ion-list-header>
       Breaking News
     </ion-list-header>
-    <ion-item *ngFor="let entry of bnEntries" (click)="openUrl(entry)">
+    <ion-item *ngFor="let entry of bnEntries" (click)="openEntry(entry)">
       <h2>{{entry.title}}</h2>
       <p>{{entry.pubDate}}</p>
     </ion-item>

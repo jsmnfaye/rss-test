@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { EntryPage } from '../entry/entry';
 
 declare var RSSParser;
 
@@ -34,8 +35,8 @@ export class RsspagePage {
       entryData: entry 
     }
 
-    // let modal = this.modalCtrl.create(EntryPage, data);
-    // modal.present();
+    let modal = this.modalCtrl.create(EntryPage, data);
+    modal.present();
   }
 
   parseBNUrls(){

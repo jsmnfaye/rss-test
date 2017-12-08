@@ -1,0 +1,16 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-buttons end>
+      <button ion-button large (click)="dismiss()">
+        <ion-icon name="close" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <h1>{{entry.title}}</h1>
+  {{entry.content}}
+</ion-content>
