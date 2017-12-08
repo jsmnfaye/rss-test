@@ -1,0 +1,18 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "./rsstest-rk.jks",
+            "storePassword": "gofayego",
+            "alias": "faye",
+            "password": "gofayego",
+            "keystoreType": ""
+        },
+        "release": {
+            "keystore": "./rsstest-rk.jks",
+            "storePassword": "gofayego",
+            "alias": "faye",
+            "password": "gofayego",
+            "keystoreType": ""
+        }
+    }
+}
