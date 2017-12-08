@@ -12,8 +12,9 @@
   <button ion-button (click)="parseUrl()">Fetch Feed</button>
   <ion-list>
     <ion-item-sliding *ngFor="let entry of entries">
-      <ion-item>
-        <a (click)="openUrl(entry)">{{entry.title}}</a><br>
+      <ion-item (click)="openUrl(entry)">
+        <h2>{{entry.title}}</h2>
+        {{entry.pubDate}}
       </ion-item>
     </ion-item-sliding>
   </ion-list>
