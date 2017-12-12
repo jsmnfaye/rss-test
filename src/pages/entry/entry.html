@@ -12,5 +12,6 @@
 
 <ion-content padding>
   <h1>{{entry.title}}</h1>
-  {{entry.content}}
+  <p>Author: {{entry.author.name}}</p>
+  <div [innerHTML]="entry.content"></div>
 </ion-content>

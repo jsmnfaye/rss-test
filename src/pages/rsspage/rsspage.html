@@ -12,24 +12,24 @@
   <button ion-button (click)="parseUrl()">Fetch Feed</button> -->
   <ion-list>
     <ion-list-header>
-      Breaking News
+      Latest News
     </ion-list-header>
-    <ion-item *ngFor="let entry of bnEntries" (click)="openEntry(entry)">
+    <ion-item *ngFor="let entry of news" (click)="openEntry(entry)">
       <h2>{{entry.title}}</h2>
-      <p>{{entry.pubDate}}</p>
+      <p>{{entry.date}}</p>
     </ion-item>
   </ion-list>
-
+<!-- 
   <ion-list>
     <ion-list-header>
       Headlines
     </ion-list-header>
-    <ion-item *ngFor="let entry of headlineEntries" (click)="openUrl(entry)">
+    <ion-item *ngFor="let entry of headlineEntries" (click)="openEntry(entry)">
       <h2>{{entry.title}}</h2>
       <p>{{entry.pubDate}}</p>
     </ion-item>
   </ion-list>
-</ion-content>
+</ion-content> -->
 
 <ion-footer>
   <ion-toolbar color="primary"></ion-toolbar>
