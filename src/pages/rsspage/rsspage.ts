@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { EntryPage } from '../entry/entry';
 import { Http } from '@angular/http';
 import 'rxjs';
@@ -17,24 +16,36 @@ export class RsspagePage {
   bnEntries: Array<any> = [];
   headlineEntries: Array<any> = [];
   news: Array<any> = [];
+  pageNo = 1;
+  totalPages: number;
+  errorMessage: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser, public modalCtrl: ModalController, private http: Http) {
-  }
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public modalCtrl: ModalController, 
+    private http: Http, 
+    public loadCtrl: LoadingController
+  ) {  }
   
   ionViewDidLoad() {
+    let loading = this.loadCtrl.create({
+      content: "Fetching latest articles...",
+      duration: 3000
+    });
+
+    loading.present();
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    // this.parseBNUrls();
-    // this.parseHeadlineUrls();
-
-    this.getTheGoods();
+    this.getTheGoods(this.pageNo);
     console.log(this.news);
+    loading.dismiss();
   }
 
-  openUrl(entry){
-    this.iab.create(entry.link,"_system");
-  }
+  // openUrl(entry){
+  //   this.iab.create(entry.link,"_system");
+  // }
 
   openEntry(entry){
     let data = {
@@ -45,51 +56,24 @@ export class RsspagePage {
     modal.present();
   }
 
-  getTheGoods(){
-    this.http.get('https://www.saipantribune.com/index.php/wp-json/posts').map(res => res.json()).subscribe(allNews =>{
-      // console.log(allNews);
+  getTheGoods(pageNo: number){
+    this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo).map(res => res.json()).subscribe(allNews =>{
+      console.log("total number of data: "+allNews.length);
       for(let i = 0; i<allNews.length; i++){
         this.news.push(allNews[i]);
       }
     });
   }
   
-  // parseUrlWrapper1(){
-  //   return new Promise((resolve,reject) => {
-  //     RSSParser.parseURL('https://www.saipantribune.com/index.php/category/breaking-news/feed/', function(err,parsed){
-  //       console.log(parsed.feed.title);
-  //       console.log(parsed.feed.entries);
-  //       if(err){
-  //         reject(err);
-  //       }
-  //       resolve(parsed.feed.entries);
-  //     });
-  //   });
-  // }
+  toInfinityAndBeyond(infiniteScroll){
+    this.pageNo = this.pageNo++;
+    setTimeout(() => {
+      this.getTheGoods(this.pageNo),
+      error => this.errorMessage = <any> error;
 
-  // parseBNUrls(){
-  //   this.parseUrlWrapper1().then((bnEntries: Array<any>) => {
-  //     this.bnEntries = bnEntries;
-  //   });
-  // }
-
-  // parseHeadlineUrls(){
-  //   this.parseUrlWrapper2().then((headlineEntries: Array<any>) => {
-  //     this.headlineEntries = headlineEntries;
-  //   });
-  // }
-
-  // parseUrlWrapper2(){
-  //   return new Promise((resolve,reject) => {
-  //     RSSParser.parseURL('https://www.saipantribune.com/index.php/category/headlines/feed/', function(err,parsed){
-  //       console.log(parsed.feed.title);
-  //       console.log(parsed.feed.entries);
-  //       if(err){
-  //         reject(err);
-  //       }
-  //       resolve(parsed.feed.entries);
-  //     });
-  //   });
-  // }
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 1000);
+  }
 
 }
