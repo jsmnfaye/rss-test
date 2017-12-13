@@ -63,10 +63,10 @@ export class RsspagePage {
         this.news.push(allNews[i]);
       }
     });
+    this.pageNo = this.pageNo++;
   }
   
   toInfinityAndBeyond(infiniteScroll){
-    this.pageNo = this.pageNo++;
     setTimeout(() => {
       this.getTheGoods(this.pageNo),
       error => this.errorMessage = <any> error;
