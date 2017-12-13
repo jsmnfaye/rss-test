@@ -48,7 +48,7 @@ export class RsspagePage {
   getTheGoods(){
     this.http.get('https://www.saipantribune.com/index.php/wp-json/posts').map(res => res.json()).subscribe(allNews =>{
       // console.log(allNews);
-      for(let i = 1; i<allNews.length; i++){
+      for(let i = 0; i<allNews.length; i++){
         this.news.push(allNews[i]);
       }
     });

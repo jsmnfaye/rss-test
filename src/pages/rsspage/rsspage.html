@@ -15,8 +15,10 @@
       Latest News
     </ion-list-header>
     <ion-item *ngFor="let entry of news" (click)="openEntry(entry)">
-      <h2>{{entry.title}}</h2>
-      <p>{{entry.date}}</p>
+      <h2><b>{{entry.title}}</b></h2>
+      <p><b>Author: </b> {{entry.author.name}}<br>
+      <b>Published: </b>{{entry.date}}</p>
+      <div [innerHTML]="entry.excerpt"></div>
     </ion-item>
   </ion-list>
 <!-- 
