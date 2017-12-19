@@ -1,6 +1,11 @@
 <ion-header>
 
   <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Saipan Tribune</ion-title>
   </ion-navbar>
 
@@ -10,7 +15,7 @@
 <ion-content padding>
   <!-- <h1>So is the infinite scroll working or not?</h1> -->
   <ion-refresher (ionRefresh)="refreshMe($event)">
-    <ion-refresher-content></ion-refresher-content>
+    <ion-refresher-content pullingText="Pull to refresh" refreshingText="mmm, refreshing..."></ion-refresher-content>
   </ion-refresher>
 
   <ion-list>

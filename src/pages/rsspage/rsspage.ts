@@ -37,7 +37,7 @@ export class RsspagePage {
     setTimeout(() => {
       console.log('Async operation has ended.');
       refresher.complete();
-    }, 3000);
+    }, 2000);
   }
   
   ionViewDidLoad() {
