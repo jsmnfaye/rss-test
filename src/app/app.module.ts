@@ -10,12 +10,14 @@ import { MyApp } from './app.component';
 import { RsspagePage } from '../pages/rsspage/rsspage';
 import { EntryPage } from '../pages/entry/entry';
 import { RssFeedProvider } from '../providers/rss-feed/rss-feed';
+import { CategoryPage } from '../pages/category/category';
 
 @NgModule({
   declarations: [
     MyApp,
     RsspagePage,
-    EntryPage
+    EntryPage,
+    CategoryPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { RssFeedProvider } from '../providers/rss-feed/rss-feed';
   entryComponents: [
     MyApp,
     RsspagePage,
-    EntryPage
+    EntryPage,
+    CategoryPage
   ],
   providers: [
     StatusBar,

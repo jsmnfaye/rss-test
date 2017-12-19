@@ -2,8 +2,8 @@
     <ion-content>
         <ion-grid>
             <ion-row>
-                <ion-list>
-                    <button ion-item>Headlines</button>
+                <ion-list [(ngModel)]='category'>
+                    <button ion-item (click)="goToPage()" value='headlines'>Headlines</button>
                     <button ion-item>Featured</button>
                     <button ion-item>Breaking News</button>
                     <button ion-item>Local News</button>
