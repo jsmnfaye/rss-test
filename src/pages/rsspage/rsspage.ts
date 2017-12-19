@@ -4,6 +4,8 @@ import { EntryPage } from '../entry/entry';
 import { Http } from '@angular/http';
 import 'rxjs';
 
+import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
+
 declare var RSSParser;
 
 @Component({
@@ -25,8 +27,18 @@ export class RsspagePage {
     public navParams: NavParams, 
     public modalCtrl: ModalController, 
     private http: Http, 
-    public loadCtrl: LoadingController
+    public loadCtrl: LoadingController,
+    private rss: RssFeedProvider
   ) {  }
+
+  refreshMe(refresher){
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended.');
+      refresher.complete();
+    }, 3000);
+  }
   
   ionViewDidLoad() {
     let loading = this.loadCtrl.create({
@@ -38,14 +50,10 @@ export class RsspagePage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    this.getTheGoods(this.pageNo);
+    this.rss.getTheGoods(this.pageNo);
     console.log(this.news);
     loading.dismiss();
   }
-
-  // openUrl(entry){
-  //   this.iab.create(entry.link,"_system");
-  // }
 
   openEntry(entry){
     let data = {
@@ -55,20 +63,10 @@ export class RsspagePage {
     let modal = this.modalCtrl.create(EntryPage, data);
     modal.present();
   }
-
-  getTheGoods(pageNo: number){
-    this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo).map(res => res.json()).subscribe(allNews =>{
-      console.log("total number of data: "+allNews.length);
-      for(let i = 0; i<allNews.length; i++){
-        this.news.push(allNews[i]);
-      }
-    });
-    this.pageNo = this.pageNo++;
-  }
   
   toInfinityAndBeyond(infiniteScroll){
     setTimeout(() => {
-      this.getTheGoods(this.pageNo),
+      this.rss.getTheGoods(this.pageNo),
       error => this.errorMessage = <any> error;
 
       console.log('Async operation has ended');

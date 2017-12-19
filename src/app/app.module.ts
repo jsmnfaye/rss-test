@@ -7,14 +7,13 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HttpModule, Http } from '@angular/http';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { RsspagePage } from '../pages/rsspage/rsspage';
 import { EntryPage } from '../pages/entry/entry';
+import { RssFeedProvider } from '../providers/rss-feed/rss-feed';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     RsspagePage,
     EntryPage
   ],
@@ -26,7 +25,6 @@ import { EntryPage } from '../pages/entry/entry';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     RsspagePage,
     EntryPage
   ],
@@ -34,7 +32,8 @@ import { EntryPage } from '../pages/entry/entry';
     StatusBar,
     SplashScreen,
     InAppBrowser,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RssFeedProvider
   ]
 })
 export class AppModule {}

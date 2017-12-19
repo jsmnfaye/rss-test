@@ -9,6 +9,10 @@
 
 <ion-content padding>
   <!-- <h1>So is the infinite scroll working or not?</h1> -->
+  <ion-refresher (ionRefresh)="refreshMe($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
     <ion-list-header>
       Latest News
