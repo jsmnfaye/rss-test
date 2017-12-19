@@ -3,7 +3,7 @@
   <ion-navbar color="primary">
     <ion-buttons start>
       <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+        <ion-icon name="menu"></ion-icon> <!-- button for toggling the sidemenu -->
       </button>
     </ion-buttons>
     <ion-title>Saipan Tribune</ion-title>
@@ -18,6 +18,8 @@
     <ion-refresher-content pullingText="Pull to refresh" refreshingText="mmm, refreshing..."></ion-refresher-content>
   </ion-refresher>
 
+
+  <!-- This is where the article will appear -->
   <ion-list>
     <ion-list-header>
       Latest News
@@ -29,7 +31,8 @@
       <div [innerHTML]="entry.excerpt"></div>
     </ion-item>
   </ion-list>
-
+  <!-- end of article -->
+  <!-- infinite scroll for more articles to load: -->
   <ion-infinite-scroll (ionInfinite)="toInfinityAndBeyond($event)">
     <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading articles..."></ion-infinite-scroll-content>
     <!-- crescent loading looks nice too! -->
@@ -38,5 +41,9 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="primary"></ion-toolbar>
+  <ion-toolbar color="primary">
+
+    <!-- Ads will be placed here -->
+
+  </ion-toolbar>
 </ion-footer> 
