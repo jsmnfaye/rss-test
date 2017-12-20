@@ -56,6 +56,7 @@ export class RsspagePage {
     });
     console.log(this.news);
     loading.dismiss();
+    this.pageNo++;
   }
 
   openEntry(entry){
@@ -69,12 +70,14 @@ export class RsspagePage {
   
   toInfinityAndBeyond(infiniteScroll){
     setTimeout(() => {
-      this.rss.getTheGoods(this.pageNo),
+      this.rss.getTheGoods(this.pageNo).then(data => {
+        this.news = data;
+      }),
       error => this.errorMessage = <any> error;
 
       console.log('Async operation has ended');
       infiniteScroll.complete();
-    }, 1000);
+    }, 2000);
   }
 
 }
