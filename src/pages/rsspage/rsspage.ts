@@ -15,9 +15,9 @@ export class RsspagePage {
   targetUrl: string;
   bnEntries: Array<any> = [];
   headlineEntries: Array<any> = [];
-  news: Array<any> = [];
-  pageNo: number = 1;
-  page: number;
+  // news: Array<any> = [];
+  news: any;
+  pageNo = 1;
   totalPages: number;
   errorMessage: string;
 
@@ -35,7 +35,7 @@ export class RsspagePage {
     setTimeout(() => {
       console.log('Async operation has ended.');
       refresher.complete();
-    }, 3000);
+    }, 2000);
   }
   
   ionViewDidLoad() {
@@ -48,9 +48,16 @@ export class RsspagePage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
+<<<<<<< HEAD
     this.getTheGoods(this.pageNo);
+=======
+    this.rss.getTheGoods(this.pageNo).then(data => {
+      this.news = data;
+    });
+>>>>>>> sidemenu
     console.log(this.news);
     loading.dismiss();
+    this.pageNo++;
   }
 
   openEntry(entry){
@@ -74,15 +81,28 @@ export class RsspagePage {
   
   toInfinityAndBeyond(infiniteScroll){
     setTimeout(() => {
+<<<<<<< HEAD
       this.pageNo = this.pageNo + 1;
       console.clear();
       console.log(this.pageNo);
+=======
+      this.pageNo = this.pageNo+1;
+>>>>>>> sidemenu
       this.getTheGoods(this.pageNo),
       error => this.errorMessage = <any> error;
 
       console.log('Async operation has ended');
       infiniteScroll.complete();
-    }, 1000);
+    }, 2000);
+  }
+
+  getTheGoods(pageNo: number){
+    this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo).map(res => res.json()).subscribe(allNews =>{
+      console.log("total number of data: "+allNews.length);
+      for(let i = 0; i<allNews.length; i++){
+        this.news.push(allNews[i]);
+      }
+    });
   }
 
 }

@@ -1,1 +1,27 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+    <ion-content>
+        <ion-grid>
+            <ion-row>
+                <ion-list>
+                    <button ion-item (click)="goToPage()" value='headlines'>Headlines</button>
+                    <button ion-item>Featured</button>
+                    <button ion-item>Breaking News</button>
+                    <button ion-item>Local News</button>
+                    <button ion-item>Sports</button>
+                    <button ion-item>Opinion</button>
+                    <button ion-item>Letters to the Editor</button>
+                    <button ion-item>Life and Style</button>
+                    <button ion-item>Environment</button>
+                    <button ion-item>Business</button>
+                    <button ion-item>Community</button>
+                    <button ion-item>Campus Life</button>
+                    <button ion-item>Fotogalleria</button>
+                    <button ion-item>Headlines</button>
+                    <button ion-item>Headlines</button>
+                </ion-list>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>

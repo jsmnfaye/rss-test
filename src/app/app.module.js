@@ -8,6 +8,8 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { RsspagePage } from '../pages/rsspage/rsspage';
 import { EntryPage } from '../pages/entry/entry';
+import { RssFeedProvider } from '../providers/rss-feed/rss-feed';
+import { CategoryPage } from '../pages/category/category';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -16,7 +18,8 @@ var AppModule = (function () {
                     declarations: [
                         MyApp,
                         RsspagePage,
-                        EntryPage
+                        EntryPage,
+                        CategoryPage
                     ],
                     imports: [
                         BrowserModule,
@@ -27,13 +30,15 @@ var AppModule = (function () {
                     entryComponents: [
                         MyApp,
                         RsspagePage,
-                        EntryPage
+                        EntryPage,
+                        CategoryPage
                     ],
                     providers: [
                         StatusBar,
                         SplashScreen,
                         InAppBrowser,
-                        { provide: ErrorHandler, useClass: IonicErrorHandler }
+                        { provide: ErrorHandler, useClass: IonicErrorHandler },
+                        RssFeedProvider
                     ]
                 },] },
     ];

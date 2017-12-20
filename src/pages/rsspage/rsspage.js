@@ -3,13 +3,19 @@ import { NavController, NavParams, ModalController, LoadingController } from 'io
 import { EntryPage } from '../entry/entry';
 import { Http } from '@angular/http';
 import 'rxjs';
+import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
 var RsspagePage = (function () {
+<<<<<<< HEAD
     function RsspagePage(navCtrl, navParams, modalCtrl, http, loadCtrl) {
+=======
+    function RsspagePage(navCtrl, navParams, modalCtrl, http, loadCtrl, rss) {
+>>>>>>> sidemenu
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
         this.http = http;
         this.loadCtrl = loadCtrl;
+        this.rss = rss;
         this.bnEntries = [];
         this.headlineEntries = [];
         this.news = [];
@@ -20,7 +26,11 @@ var RsspagePage = (function () {
         setTimeout(function () {
             console.log('Async operation has ended.');
             refresher.complete();
+<<<<<<< HEAD
         }, 3000);
+=======
+        }, 2000);
+>>>>>>> sidemenu
     };
     RsspagePage.prototype.ionViewDidLoad = function () {
         var loading = this.loadCtrl.create({
@@ -30,7 +40,7 @@ var RsspagePage = (function () {
         loading.present();
         console.clear();
         console.log('Hello, beautiful people of the Philippines!');
-        this.getTheGoods(this.pageNo);
+        this.rss.getTheGoods(this.pageNo);
         console.log(this.news);
         loading.dismiss();
     };
@@ -41,6 +51,7 @@ var RsspagePage = (function () {
         var modal = this.modalCtrl.create(EntryPage, data);
         modal.present();
     };
+<<<<<<< HEAD
     RsspagePage.prototype.getTheGoods = function (pageNo) {
         var _this = this;
         this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page=' + pageNo).map(function (res) { return res.json(); }).subscribe(function (allNews) {
@@ -56,6 +67,12 @@ var RsspagePage = (function () {
         var _this = this;
         setTimeout(function () {
             _this.getTheGoods(_this.pageNo),
+=======
+    RsspagePage.prototype.toInfinityAndBeyond = function (infiniteScroll) {
+        var _this = this;
+        setTimeout(function () {
+            _this.rss.getTheGoods(_this.pageNo),
+>>>>>>> sidemenu
                 function (error) { return _this.errorMessage = error; };
             console.log('Async operation has ended');
             infiniteScroll.complete();
@@ -74,6 +91,7 @@ var RsspagePage = (function () {
         { type: ModalController, },
         { type: Http, },
         { type: LoadingController, },
+        { type: RssFeedProvider, },
     ]; };
     return RsspagePage;
 }());
