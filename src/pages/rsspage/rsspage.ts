@@ -70,14 +70,22 @@ export class RsspagePage {
   
   toInfinityAndBeyond(infiniteScroll){
     setTimeout(() => {
-      this.rss.getTheGoods(this.pageNo).then(data => {
-        this.news = data;
-      }),
+      this.pageNo = this.pageNo+1;
+      this.getTheGoods(this.pageNo),
       error => this.errorMessage = <any> error;
 
       console.log('Async operation has ended');
       infiniteScroll.complete();
     }, 2000);
+  }
+
+  getTheGoods(pageNo: number){
+    this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo).map(res => res.json()).subscribe(allNews =>{
+      console.log("total number of data: "+allNews.length);
+      for(let i = 0; i<allNews.length; i++){
+        this.news.push(allNews[i]);
+      }
+    });
   }
 
 }
