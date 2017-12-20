@@ -35,6 +35,7 @@ import { CategoryPage } from '../pages/category/category';
     StatusBar,
     SplashScreen,
     InAppBrowser,
+    RssFeedProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

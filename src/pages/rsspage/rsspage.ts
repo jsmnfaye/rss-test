@@ -4,6 +4,8 @@ import { EntryPage } from '../entry/entry';
 import { Http } from '@angular/http';
 import 'rxjs';
 
+import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
+
 declare var RSSParser;
 
 @Component({
@@ -15,7 +17,6 @@ export class RsspagePage {
   targetUrl: string;
   bnEntries: Array<any> = [];
   headlineEntries: Array<any> = [];
-  // news: Array<any> = [];
   news: any;
   pageNo = 1;
   totalPages: number;
@@ -26,7 +27,8 @@ export class RsspagePage {
     public navParams: NavParams, 
     public modalCtrl: ModalController, 
     private http: Http, 
-    public loadCtrl: LoadingController
+    public loadCtrl: LoadingController,
+    private rss: RssFeedProvider
   ) {  }
 
   refreshMe(refresher){
@@ -48,13 +50,9 @@ export class RsspagePage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-<<<<<<< HEAD
-    this.getTheGoods(this.pageNo);
-=======
     this.rss.getTheGoods(this.pageNo).then(data => {
       this.news = data;
     });
->>>>>>> sidemenu
     console.log(this.news);
     loading.dismiss();
     this.pageNo++;
@@ -68,26 +66,10 @@ export class RsspagePage {
     let modal = this.modalCtrl.create(EntryPage, data);
     modal.present();
   }
-
-  getTheGoods(pageNo: number){
-      this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo).map(res => res.json()).subscribe(allNews =>{
-        console.log("total number of data: "+allNews.length);
-        for(let i = 0; i<allNews.length; i++){
-          this.news.push(allNews[i]);
-        }
-        allNews;
-      });
-    }
   
   toInfinityAndBeyond(infiniteScroll){
     setTimeout(() => {
-<<<<<<< HEAD
-      this.pageNo = this.pageNo + 1;
-      console.clear();
-      console.log(this.pageNo);
-=======
       this.pageNo = this.pageNo+1;
->>>>>>> sidemenu
       this.getTheGoods(this.pageNo),
       error => this.errorMessage = <any> error;
 
