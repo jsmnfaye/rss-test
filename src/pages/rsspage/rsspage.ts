@@ -4,8 +4,6 @@ import { EntryPage } from '../entry/entry';
 import { Http } from '@angular/http';
 import 'rxjs';
 
-import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
-
 declare var RSSParser;
 
 @Component({
@@ -27,8 +25,7 @@ export class RsspagePage {
     public navParams: NavParams, 
     public modalCtrl: ModalController, 
     private http: Http, 
-    public loadCtrl: LoadingController,
-    private rss: RssFeedProvider
+    public loadCtrl: LoadingController
   ) {  }
 
   refreshMe(refresher){
@@ -50,7 +47,7 @@ export class RsspagePage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    this.rss.getTheGoods(this.pageNo);
+    this.getTheGoods(this.pageNo);
     console.log(this.news);
     loading.dismiss();
   }
@@ -63,10 +60,21 @@ export class RsspagePage {
     let modal = this.modalCtrl.create(EntryPage, data);
     modal.present();
   }
+
+  getTheGoods(pageNo: number){
+      this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo).map(res => res.json()).subscribe(allNews =>{
+        console.log("total number of data: "+allNews.length);
+        for(let i = 0; i<allNews.length; i++){
+          this.news.push(allNews[i]);
+        }
+        allNews;
+      });
+      pageNo = pageNo++;
+    }
   
   toInfinityAndBeyond(infiniteScroll){
     setTimeout(() => {
-      this.rss.getTheGoods(this.pageNo),
+      this.getTheGoods(this.pageNo),
       error => this.errorMessage = <any> error;
 
       console.log('Async operation has ended');
