@@ -16,7 +16,8 @@ export class RsspagePage {
   bnEntries: Array<any> = [];
   headlineEntries: Array<any> = [];
   news: Array<any> = [];
-  pageNo = 1;
+  pageNo: number = 1;
+  page: number;
   totalPages: number;
   errorMessage: string;
 
@@ -69,11 +70,13 @@ export class RsspagePage {
         }
         allNews;
       });
-      pageNo = pageNo++;
     }
   
   toInfinityAndBeyond(infiniteScroll){
     setTimeout(() => {
+      this.pageNo = this.pageNo + 1;
+      console.clear();
+      console.log(this.pageNo);
       this.getTheGoods(this.pageNo),
       error => this.errorMessage = <any> error;
 

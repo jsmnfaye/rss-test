@@ -9,7 +9,6 @@ import { HttpModule, Http } from '@angular/http';
 import { MyApp } from './app.component';
 import { RsspagePage } from '../pages/rsspage/rsspage';
 import { EntryPage } from '../pages/entry/entry';
-import { RssFeedProvider } from '../providers/rss-feed/rss-feed';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { RssFeedProvider } from '../providers/rss-feed/rss-feed';
     StatusBar,
     SplashScreen,
     InAppBrowser,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RssFeedProvider
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}

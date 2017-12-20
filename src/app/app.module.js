@@ -6,7 +6,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { RsspagePage } from '../pages/rsspage/rsspage';
 import { EntryPage } from '../pages/entry/entry';
 var AppModule = (function () {
@@ -16,7 +15,6 @@ var AppModule = (function () {
         { type: NgModule, args: [{
                     declarations: [
                         MyApp,
-                        HomePage,
                         RsspagePage,
                         EntryPage
                     ],
@@ -28,7 +26,6 @@ var AppModule = (function () {
                     bootstrap: [IonicApp],
                     entryComponents: [
                         MyApp,
-                        HomePage,
                         RsspagePage,
                         EntryPage
                     ],
