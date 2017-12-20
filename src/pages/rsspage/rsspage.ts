@@ -17,7 +17,8 @@ export class RsspagePage {
   targetUrl: string;
   bnEntries: Array<any> = [];
   headlineEntries: Array<any> = [];
-  news: Array<any> = [];
+  // news: Array<any> = [];
+  news: any;
   pageNo = 1;
   totalPages: number;
   errorMessage: string;
@@ -50,7 +51,9 @@ export class RsspagePage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    this.rss.getTheGoods(this.pageNo);
+    this.rss.getTheGoods(this.pageNo).then(data => {
+      this.news = data;
+    });
     console.log(this.news);
     loading.dismiss();
   }

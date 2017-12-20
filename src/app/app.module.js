@@ -6,9 +6,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { RsspagePage } from '../pages/rsspage/rsspage';
 import { EntryPage } from '../pages/entry/entry';
+import { RssFeedProvider } from '../providers/rss-feed/rss-feed';
+import { CategoryPage } from '../pages/category/category';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -16,9 +17,9 @@ var AppModule = (function () {
         { type: NgModule, args: [{
                     declarations: [
                         MyApp,
-                        HomePage,
                         RsspagePage,
-                        EntryPage
+                        EntryPage,
+                        CategoryPage
                     ],
                     imports: [
                         BrowserModule,
@@ -28,15 +29,16 @@ var AppModule = (function () {
                     bootstrap: [IonicApp],
                     entryComponents: [
                         MyApp,
-                        HomePage,
                         RsspagePage,
-                        EntryPage
+                        EntryPage,
+                        CategoryPage
                     ],
                     providers: [
                         StatusBar,
                         SplashScreen,
                         InAppBrowser,
-                        { provide: ErrorHandler, useClass: IonicErrorHandler }
+                        { provide: ErrorHandler, useClass: IonicErrorHandler },
+                        RssFeedProvider
                     ]
                 },] },
     ];

@@ -13,8 +13,6 @@ export class MyApp {
   @ViewChild(Nav) nav;
   rootPage:any = RsspagePage;
 
-  category: string = '';
-
   constructor(
     platform: Platform, 
     statusBar: StatusBar, 
@@ -29,7 +27,6 @@ export class MyApp {
 
   goToPage(){
     console.clear();
-    console.log(this.category);
     this.nav.setRoot(CategoryPage);
     this.menuCtrl.close();
   }

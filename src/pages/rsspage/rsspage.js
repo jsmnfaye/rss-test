@@ -1,22 +1,29 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { EntryPage } from '../entry/entry';
 import { Http } from '@angular/http';
 import 'rxjs';
+import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
 var RsspagePage = (function () {
-    function RsspagePage(navCtrl, navParams, iab, modalCtrl, http, loadCtrl) {
+    function RsspagePage(navCtrl, navParams, modalCtrl, http, loadCtrl, rss) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.iab = iab;
         this.modalCtrl = modalCtrl;
         this.http = http;
         this.loadCtrl = loadCtrl;
+        this.rss = rss;
         this.bnEntries = [];
         this.headlineEntries = [];
         this.news = [];
         this.pageNo = 1;
     }
+    RsspagePage.prototype.refreshMe = function (refresher) {
+        console.log('Begin async operation', refresher);
+        setTimeout(function () {
+            console.log('Async operation has ended.');
+            refresher.complete();
+        }, 2000);
+    };
     RsspagePage.prototype.ionViewDidLoad = function () {
         var loading = this.loadCtrl.create({
             content: "Fetching latest articles...",
@@ -25,12 +32,9 @@ var RsspagePage = (function () {
         loading.present();
         console.clear();
         console.log('Hello, beautiful people of the Philippines!');
-        this.getTheGoods(this.pageNo);
+        this.rss.getTheGoods(this.pageNo);
         console.log(this.news);
         loading.dismiss();
-    };
-    RsspagePage.prototype.openUrl = function (entry) {
-        this.iab.create(entry.link, "_system");
     };
     RsspagePage.prototype.openEntry = function (entry) {
         var data = {
@@ -39,27 +43,11 @@ var RsspagePage = (function () {
         var modal = this.modalCtrl.create(EntryPage, data);
         modal.present();
     };
-    RsspagePage.prototype.getTheGoods = function (pageNo) {
-        var _this = this;
-        this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page=' + pageNo).map(function (res) { return res.json(); }).subscribe(function (allNews) {
-            // console.log(allNews);
-            for (var i = 0; i < allNews.length; i++) {
-                _this.news.push(allNews[i]);
-            }
-        });
-    };
     RsspagePage.prototype.toInfinityAndBeyond = function (infiniteScroll) {
         var _this = this;
-        this.pageNo = this.pageNo++;
         setTimeout(function () {
-            _this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page=' + _this.pageNo).map(function (res) { return res.json(); }).subscribe(function (allNews) {
-                // console.log(allNews);
-                // console.log(allNews);
-                _this.totalPages = allNews.length;
-                for (var i = 0; i < allNews.length; i++) {
-                    _this.news.push(allNews[i]);
-                }
-            }, function (error) { return _this.errorMessage = error; });
+            _this.rss.getTheGoods(_this.pageNo),
+                function (error) { return _this.errorMessage = error; };
             console.log('Async operation has ended');
             infiniteScroll.complete();
         }, 1000);
@@ -74,10 +62,10 @@ var RsspagePage = (function () {
     RsspagePage.ctorParameters = function () { return [
         { type: NavController, },
         { type: NavParams, },
-        { type: InAppBrowser, },
         { type: ModalController, },
         { type: Http, },
         { type: LoadingController, },
+        { type: RssFeedProvider, },
     ]; };
     return RsspagePage;
 }());
