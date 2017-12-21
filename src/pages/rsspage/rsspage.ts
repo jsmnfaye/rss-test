@@ -19,6 +19,7 @@ export class RsspagePage {
   headlineEntries: Array<any> = [];
   news: any;
   pageNo = 1;
+  category: string = '';
   totalPages: number;
   errorMessage: string;
 
@@ -50,7 +51,7 @@ export class RsspagePage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    this.rss.getTheGoods(this.pageNo).then(data => {
+    this.rss.getTheGoods(this.pageNo, this.category).then(data => {
       this.news = data;
     });
     console.log(this.news);

@@ -11,13 +11,13 @@ export class RssFeedProvider {
     console.log('Hello RssFeedProvider Provider');
   }
   
-  getTheGoods(pageNo: number){
+  getTheGoods(pageNo: number, category: string){
     if(this.data){
       return Promise.resolve(this.data);
     }
 
     return new Promise(resolve => {
-      this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo).map(res => res.json()).subscribe(data => {
+      this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo+'&category='+category).map(res => res.json()).subscribe(data => {
         this.data = data;
         resolve(this.data);
       });
