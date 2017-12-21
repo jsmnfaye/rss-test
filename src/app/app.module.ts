@@ -7,8 +7,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HttpModule, Http } from '@angular/http';
 
 import { MyApp } from './app.component';
-import { RsspagePage } from '../pages/rsspage/rsspage';
-import { EntryPage } from '../pages/entry/entry';
+import { RsspagePage } from '../pages/rsspage/rsspage'; //Headlines Page (Home Page)
+import { EntryPage } from '../pages/entry/entry'; 
 import { RssFeedProvider } from '../providers/rss-feed/rss-feed';
 import { BreakingNewsPage } from '../pages/categories/breaking-news/breaking-news';
 import { LocalNewsPage } from '../pages/categories/local-news/local-news';

@@ -1,23 +1,27 @@
 <ion-menu [content]="content">
+    <ion-header>       
+        <ion-navbar color="dark">
+            <ion-title color="light">Categories</ion-title>
+        </ion-navbar>
+    </ion-header>
     <ion-content>
         <ion-grid>
             <ion-row>
                 <ion-list>
-                    <button ion-item (click)="goToPage()" value='headlines'>Headlines</button>
-                    <button ion-item>Featured</button>
-                    <button ion-item>Breaking News</button>
-                    <button ion-item>Local News</button>
-                    <button ion-item>Sports</button>
-                    <button ion-item>Opinion</button>
-                    <button ion-item>Letters to the Editor</button>
-                    <button ion-item>Life and Style</button>
-                    <button ion-item>Environment</button>
-                    <button ion-item>Business</button>
-                    <button ion-item>Community</button>
-                    <button ion-item>Campus Life</button>
-                    <button ion-item>Fotogalleria</button>
-                    <button ion-item>Headlines</button>
-                    <button ion-item>Headlines</button>
+                    <button ion-item (click)="goToPage(1)">Headlines</button>
+                    <button ion-item (click)="goToPage(2)">Breaking News</button>
+                    <button ion-item (click)="goToPage(3)">Local News</button>
+                    <button ion-item (click)="goToPage(4)">Sports</button>
+                    <button ion-item (click)="goToPage(5)">Opinion</button>
+                    <button ion-item (click)="goToPage(6)">Letters to the Editor</button>
+                    <button ion-item (click)="goToPage(7)">Life and Style</button>
+                    <button ion-item (click)="goToPage(8)">Environment</button>
+                    <button ion-item (click)="goToPage(9)">Business</button>
+                    <button ion-item (click)="goToPage(10)">Community</button>
+                    <button ion-item (click)="goToPage(11)">Campus Life</button>
+                    <button ion-item (click)="goToPage(12)">Fotogalleria</button>
+                    <button ion-item (click)="goToPage(13)">Pacific</button>
+                    <button ion-item (click)="goToPage(14)">Biba Marianas!</button>
                 </ion-list>
             </ion-row>
         </ion-grid>
