@@ -12,13 +12,9 @@ import { RssFeedProvider } from '../../../providers/rss-feed/rss-feed';
 })
 export class BreakingNewsPage {
 
-  targetUrl: string;
-  bnEntries: Array<any> = [];
-  headlineEntries: Array<any> = [];
   news: any;
   pageNo = 1;
   category: string = 'breaking-news';
-  totalPages: number;
   errorMessage: string;
 
   constructor(
