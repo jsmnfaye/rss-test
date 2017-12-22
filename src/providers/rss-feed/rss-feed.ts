@@ -17,7 +17,7 @@ export class RssFeedProvider {
     }
 
     return new Promise(resolve => {
-      this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo+'&category='+category).map(res => res.json()).subscribe(data => {
+      this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo+'&filter[category_name]='+category).map(res => res.json()).subscribe(data => {
         this.data = data;
         resolve(this.data);
       });

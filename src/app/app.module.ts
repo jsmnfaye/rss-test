@@ -10,7 +10,9 @@ import { MyApp } from './app.component';
 import { RsspagePage } from '../pages/rsspage/rsspage'; //Headlines Page (Home Page)
 import { EntryPage } from '../pages/entry/entry'; 
 import { RssFeedProvider } from '../providers/rss-feed/rss-feed';
+
 import { BreakingNewsPage } from '../pages/categories/breaking-news/breaking-news';
+import { FeaturedPage } from '../pages/categories/featured/featured';
 import { LocalNewsPage } from '../pages/categories/local-news/local-news';
 import { SportsPage } from '../pages/categories/sports/sports';
 import { OpinionPage } from '../pages/categories/opinion/opinion';
@@ -30,6 +32,7 @@ import { BibaMarianasPage } from '../pages/categories/biba-marianas/biba-mariana
     RsspagePage,
     EntryPage,
     BreakingNewsPage,
+    FeaturedPage,
     LocalNewsPage,
     SportsPage,
     OpinionPage,
@@ -54,6 +57,7 @@ import { BibaMarianasPage } from '../pages/categories/biba-marianas/biba-mariana
     RsspagePage,
     EntryPage,
     BreakingNewsPage,
+    FeaturedPage,
     LocalNewsPage,
     SportsPage,
     OpinionPage,
