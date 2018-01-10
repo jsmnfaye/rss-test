@@ -12,10 +12,11 @@ import 'rxjs';
 })
 export class FotogalleriaPage {
 
-  news: any;
+  news: any[] = [];
   pageNo = 1;
-  category: string = 'fotogalleria';
+  category: string;
   errorMessage: string;
+  pageReady: boolean = false;
 
   constructor(
     public toast: ToastController,
@@ -25,7 +26,9 @@ export class FotogalleriaPage {
     private http: Http, 
     public loadCtrl: LoadingController,
     private rss: RssFeedProvider
-  ) {  }
+  ) { 
+    this.category = 'fotogalleria';
+   }
 
   refreshMe(refresher){
     console.log('Begin async operation', refresher);
@@ -45,18 +48,12 @@ export class FotogalleriaPage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    this.rss.getTheGoods(this.pageNo, this.category).then(data => {
-      this.news = data;
-    });
+    this.getTheGoods(this.pageNo, this.category);
     console.log(this.news);
-    loading.dismiss();
-    this.pageNo++;
-    let toast = this.toast.create({
-      message: 'Showing only fotogalleria.',
-      duration: 3000
-    });
-
-    toast.present();
+    if(this.pageReady === true){
+      this.pageNo++;
+      loading.dismiss();
+    }
   }
 
   openEntry(entry){
@@ -86,6 +83,7 @@ export class FotogalleriaPage {
         this.news.push(allNews[i]);
       }
     });
+    this.pageReady = true;
   }
 
 }

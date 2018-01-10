@@ -27,7 +27,7 @@ export class MyApp {
   goToPage(category: number){
     console.clear();
     if(category == 1){
-      this.nav.setRoot(RsspagePage);
+      this.nav.setRoot('HeadlinesPage');
     } else if(category == 2) {
       this.nav.setRoot('FeaturedPage');
     } else if(category == 3) {

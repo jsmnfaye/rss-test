@@ -22,6 +22,7 @@ export class RsspagePage {
   category: string = '';
   totalPages: number;
   errorMessage: string;
+  pageReady: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -53,9 +54,12 @@ export class RsspagePage {
 
     this.rss.getTheGoods(this.pageNo, this.category).then(data => {
       this.news = data;
+      this.pageReady = true;
     });
     console.log(this.news);
-    loading.dismiss();
+    if(this.pageReady === true){
+      loading.dismiss();
+    }
     this.pageNo++;
   }
 

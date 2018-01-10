@@ -12,9 +12,9 @@ import 'rxjs';
 })
 export class BibaMarianasPage {
 
-  news: any;
+  news: any[] = [];
   pageNo = 1;
-  category: string = 'biba-marianas';
+  category: string;
   errorMessage: string;
   pageReady: boolean = false;
 
@@ -26,7 +26,9 @@ export class BibaMarianasPage {
     private http: Http, 
     public loadCtrl: LoadingController,
     private rss: RssFeedProvider
-  ) {  }
+  ) { 
+    this.category = 'sports';
+   }
 
   refreshMe(refresher){
     console.log('Begin async operation', refresher);
@@ -46,21 +48,17 @@ export class BibaMarianasPage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    this.rss.getTheGoods(this.pageNo, this.category).then(data => {
-      this.news = data;
-      this.pageReady = true;
-    });
+    this.getTheGoods(this.pageNo, this.category);
     console.log(this.news);
     if(this.pageReady === true){
+      this.pageNo++;
       loading.dismiss();
+      let toast = this.toast.create({
+        message: 'Showing only sports news.',
+        duration: 3000
+      });
+      toast.present();
     }
-    this.pageNo++;
-    let toast = this.toast.create({
-      message: 'Showing only Biba Marianas! news.',
-      duration: 3000
-    });
-
-    toast.present();
   }
 
   openEntry(entry){
@@ -90,6 +88,7 @@ export class BibaMarianasPage {
         this.news.push(allNews[i]);
       }
     });
+    this.pageReady = true;
   }
 
 }

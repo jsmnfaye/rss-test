@@ -8,10 +8,11 @@ export class RssFeedProvider {
   data: any;
 
   constructor(public http: Http) {
-    console.log('Hello RssFeedProvider Provider');
+    console.log('Hello, RSS Feed Provider!');
   }
   
   getTheGoods(pageNo: number, category: string){
+    console.log('Page #'+pageNo+', '+category);
     if(this.data){
       return Promise.resolve(this.data);
     }

@@ -12,10 +12,11 @@ import 'rxjs';
 })
 export class LocalNewsPage {
 
-  news: any;
+  news: any[] = [];
   pageNo = 1;
-  category: string = 'local-news';
+  category: string;
   errorMessage: string;
+  pageReady: boolean = false;
 
   constructor(
     public toast: ToastController,
@@ -25,7 +26,9 @@ export class LocalNewsPage {
     private http: Http, 
     public loadCtrl: LoadingController,
     private rss: RssFeedProvider
-  ) {  }
+  ) { 
+    this.category = 'local-news';
+   }
 
   refreshMe(refresher){
     console.log('Begin async operation', refresher);
@@ -45,18 +48,17 @@ export class LocalNewsPage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    this.rss.getTheGoods(this.pageNo, this.category).then(data => {
-      this.news = data;
-    });
+    this.getTheGoods(this.pageNo, this.category);
     console.log(this.news);
-    loading.dismiss();
-    this.pageNo++;
-    let toast = this.toast.create({
-      message: 'Showing only local news.',
-      duration: 3000
-    });
-
-    toast.present();
+    if(this.pageReady === true){
+      this.pageNo++;
+      loading.dismiss();
+      let toast = this.toast.create({
+        message: 'Showing only local news.',
+        duration: 3000
+      });
+      toast.present();
+    }
   }
 
   openEntry(entry){
@@ -86,6 +88,7 @@ export class LocalNewsPage {
         this.news.push(allNews[i]);
       }
     });
+    this.pageReady = true;
   }
 
 }

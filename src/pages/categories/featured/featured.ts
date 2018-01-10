@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { EntryPage } from '../../entry/entry';
 import { Http } from '@angular/http';
 import { RssFeedProvider } from '../../../providers/rss-feed/rss-feed';
@@ -12,10 +12,11 @@ import 'rxjs';
 })
 export class FeaturedPage {
 
-  news: any;
+  news: any[] = [];
   pageNo = 1;
-  category: string = 'featured';
+  category: string;
   errorMessage: string;
+  pageReady: boolean = false;
 
   constructor(
     public toast: ToastController,
@@ -25,7 +26,9 @@ export class FeaturedPage {
     private http: Http, 
     public loadCtrl: LoadingController,
     private rss: RssFeedProvider
-  ) {  }
+  ) { 
+    this.category = 'featured';
+   }
 
   refreshMe(refresher){
     console.log('Begin async operation', refresher);
@@ -45,18 +48,17 @@ export class FeaturedPage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    this.rss.getTheGoods(this.pageNo, this.category).then(data => {
-      this.news = data;
-    });
+    this.getTheGoods(this.pageNo, this.category);
     console.log(this.news);
-    loading.dismiss();
-    this.pageNo++;
-    let toast = this.toast.create({
-      message: 'Showing only featured news.',
-      duration: 3000
-    });
-
-    toast.present();
+    if(this.pageReady === true){
+      this.pageNo++;
+      loading.dismiss();
+      let toast = this.toast.create({
+        message: 'Showing only featured news.',
+        duration: 3000
+      });
+      toast.present();
+    }
   }
 
   openEntry(entry){
@@ -86,7 +88,7 @@ export class FeaturedPage {
         this.news.push(allNews[i]);
       }
     });
+    this.pageReady = true;
   }
-
 
 }

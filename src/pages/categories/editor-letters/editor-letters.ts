@@ -11,10 +11,12 @@ import 'rxjs';
   templateUrl: 'editor-letters.html',
 })
 export class EditorLettersPage {
-  news: any;
+
+  news: any[] = [];
   pageNo = 1;
-  category: string = 'letters-to-the-editor';
+  category: string;
   errorMessage: string;
+  pageReady: boolean = false;
 
   constructor(
     public toast: ToastController,
@@ -24,7 +26,9 @@ export class EditorLettersPage {
     private http: Http, 
     public loadCtrl: LoadingController,
     private rss: RssFeedProvider
-  ) {  }
+  ) { 
+    this.category = 'letters-to-the-editor';
+   }
 
   refreshMe(refresher){
     console.log('Begin async operation', refresher);
@@ -44,18 +48,17 @@ export class EditorLettersPage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    this.rss.getTheGoods(this.pageNo, this.category).then(data => {
-      this.news = data;
-    });
+    this.getTheGoods(this.pageNo, this.category);
     console.log(this.news);
-    loading.dismiss();
-    this.pageNo++;
-    let toast = this.toast.create({
-      message: 'Showing only letters to the editor.',
-      duration: 3000
-    });
-
-    toast.present();
+    if(this.pageReady === true){
+      this.pageNo++;
+      loading.dismiss();
+      let toast = this.toast.create({
+        message: 'Showing only letters to the editor.',
+        duration: 3000
+      });
+      toast.present();
+    }
   }
 
   openEntry(entry){
@@ -85,6 +88,7 @@ export class EditorLettersPage {
         this.news.push(allNews[i]);
       }
     });
+    this.pageReady = true;
   }
 
 }

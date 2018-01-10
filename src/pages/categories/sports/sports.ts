@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
 import { EntryPage } from '../../entry/entry';
 import { Http } from '@angular/http';
 import 'rxjs';
 
 import { RssFeedProvider } from '../../../providers/rss-feed/rss-feed';
 
+@IonicPage()
 @Component({
   selector: 'page-sports',
   templateUrl: 'sports.html',
 })
 export class SportsPage {
 
-  news: any;
+  news: any[] = [];
   pageNo = 1;
-  category: string = 'sports';
+  category: string;
   errorMessage: string;
+  pageReady: boolean = false;
 
   constructor(
     public toast: ToastController,
@@ -25,7 +27,9 @@ export class SportsPage {
     private http: Http, 
     public loadCtrl: LoadingController,
     private rss: RssFeedProvider
-  ) {  }
+  ) { 
+    this.category = 'sports';
+   }
 
   refreshMe(refresher){
     console.log('Begin async operation', refresher);
@@ -45,18 +49,17 @@ export class SportsPage {
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    this.rss.getTheGoods(this.pageNo, this.category).then(data => {
-      this.news = data;
-    });
+    this.getTheGoods(this.pageNo, this.category);
     console.log(this.news);
-    loading.dismiss();
-    this.pageNo++;
-    let toast = this.toast.create({
-      message: 'Showing only sports news.',
-      duration: 3000
-    });
-
-    toast.present();
+    if(this.pageReady === true){
+      this.pageNo++;
+      loading.dismiss();
+      let toast = this.toast.create({
+        message: 'Showing only sports news.',
+        duration: 3000
+      });
+      toast.present();
+    }
   }
 
   openEntry(entry){
@@ -86,6 +89,7 @@ export class SportsPage {
         this.news.push(allNews[i]);
       }
     });
+    this.pageReady = true;
   }
 
 }
