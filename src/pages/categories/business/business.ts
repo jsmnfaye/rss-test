@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
 import { EntryPage } from '../../entry/entry';
 import { Http } from '@angular/http';
+import { RssFeedProvider } from '../../../providers/rss-feed/rss-feed';
 import 'rxjs';
 
-import { RssFeedProvider } from '../../../providers/rss-feed/rss-feed';
-
+@IonicPage()
 @Component({
   selector: 'page-business',
   templateUrl: 'business.html',
@@ -16,6 +16,7 @@ export class BusinessPage {
   pageNo = 1;
   category: string = 'business';
   errorMessage: string;
+  pageReady: boolean = false;
 
   constructor(
     public toast: ToastController,
@@ -47,9 +48,12 @@ export class BusinessPage {
 
     this.rss.getTheGoods(this.pageNo, this.category).then(data => {
       this.news = data;
+      this.pageReady = true;
     });
     console.log(this.news);
-    loading.dismiss();
+    if(this.pageReady === true){
+      loading.dismiss();
+    }
     this.pageNo++;
     let toast = this.toast.create({
       message: 'Showing only business news.',

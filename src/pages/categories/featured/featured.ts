@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
 import { EntryPage } from '../../entry/entry';
 import { Http } from '@angular/http';
+import { RssFeedProvider } from '../../../providers/rss-feed/rss-feed';
 import 'rxjs';
 
-import { RssFeedProvider } from '../../../providers/rss-feed/rss-feed';
-
+@IonicPage()
 @Component({
   selector: 'page-featured',
   templateUrl: 'featured.html',
