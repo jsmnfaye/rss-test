@@ -1,19 +1,14 @@
 <ion-header>
-
+    
   <ion-navbar color="primary">
-    <ion-buttons end>
-      <button ion-button icon-only menuToggle>
-        <ion-icon name="menu"></ion-icon> 
-      </button>
-    </ion-buttons>
-    <ion-title>Saipan Tribune</ion-title>
     <ion-buttons start>
-      <button ion-button icon-only>
-        <ion-icon name="search"></ion-icon> 
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-title>Headlines</ion-title>
   </ion-navbar>
-
+    
 </ion-header>
 
 
@@ -26,9 +21,6 @@
 
   <!-- This is where the article will appear -->
   <ion-list>
-    <ion-list-header>
-      Latest News
-    </ion-list-header>
     <ion-item *ngFor="let entry of news" (click)="openEntry(entry)">
       <h2><b>{{entry.title}}</b></h2>
       <p><b>Author: </b> {{entry.author.name}}<br>
@@ -45,8 +37,10 @@
 
 </ion-content>
 
-<!-- <ion-footer>
+<ion-footer>
   <ion-toolbar color="primary">
 
+    <!-- Ads will be placed here -->
+
   </ion-toolbar>
-</ion-footer>  -->
+</ion-footer> 

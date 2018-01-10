@@ -1,38 +1,34 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
-import { EntryPage } from '../entry/entry';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
+import { EntryPage } from '../../entry/entry';
 import { Http } from '@angular/http';
-import { AdsProvider } from '../../providers/ads/ads';
+import { RssFeedProvider } from '../../../providers/rss-feed/rss-feed';
+import 'rxjs';
 
-import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
-
-declare var RSSParser;
-
+@IonicPage()
 @Component({
-  selector: 'page-rsspage',
-  templateUrl: 'rsspage.html',
+  selector: 'page-headlines',
+  templateUrl: 'headlines.html',
 })
-export class RsspagePage {
+export class HeadlinesPage {
 
-  targetUrl: string;
-  bnEntries: Array<any> = [];
-  headlineEntries: Array<any> = [];
-  news: any;
+  news: any[] = [];
   pageNo = 1;
-  category: string = '';
-  totalPages: number;
+  category: string;
   errorMessage: string;
   pageReady: boolean = false;
 
   constructor(
+    public toast: ToastController,
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public modalCtrl: ModalController, 
     private http: Http, 
     public loadCtrl: LoadingController,
-    private rss: RssFeedProvider,
-    public adsProvider: AdsProvider
-  ) { this.adsProvider.showAd(); }
+    private rss: RssFeedProvider
+  ) { 
+    this.category = 'headlines';
+   }
 
   refreshMe(refresher){
     console.log('Begin async operation', refresher);
@@ -45,23 +41,24 @@ export class RsspagePage {
   
   ionViewDidLoad() {
     let loading = this.loadCtrl.create({
-      content: "Fetching latest articles...",
-      duration: 3000
+      content: "Fetching latest articles..."
     });
 
     loading.present();
     console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
-    this.rss.getTheGoods(this.pageNo, this.category).then(data => {
-      this.news = data;
-      this.pageReady = true;
-    });
+    this.getTheGoods(this.pageNo, this.category);
     console.log(this.news);
     if(this.pageReady === true){
+      this.pageNo++;
       loading.dismiss();
+      let toast = this.toast.create({
+        message: 'Showing only headlines',
+        duration: 3000
+      });
+      toast.present();
     }
-    this.pageNo++;
   }
 
   openEntry(entry){
@@ -91,6 +88,7 @@ export class RsspagePage {
         this.news.push(allNews[i]);
       }
     });
+    this.pageReady = true;
   }
 
 }
