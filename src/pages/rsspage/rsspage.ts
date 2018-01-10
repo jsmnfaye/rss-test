@@ -57,10 +57,10 @@ export class RsspagePage {
       this.news = data;
       this.pageReady = true;
     });
-    console.log(this.news);
     if(this.pageReady === true){
       loading.dismiss();
     }
+    // console.log(this.news);
     this.pageNo++;
   }
 
@@ -91,6 +91,11 @@ export class RsspagePage {
         this.news.push(allNews[i]);
       }
     });
+  }
+
+  goSearch(){
+    let modal = this.modalCtrl.create('SearchPage');
+    modal.present();
   }
 
 }
