@@ -1,6 +1,6 @@
 {
   "name": "rsstest",
-  "app_id": "",
+  "app_id": "2c367f55",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

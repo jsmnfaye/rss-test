@@ -12,33 +12,16 @@
    <p><ion-icon name="search"></ion-icon> Showing articles with the keyword: <b>{{keyword}}</b></p>
   </ion-item>
 
-  <ion-list>
-    <!-- <ion-card>
-      <ion-card-header>Article Title Goes Here</ion-card-header>
-      <ion-card-content>
-        Article snippet goes here... Let's put stuff in here related to the article!
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>Article Title Goes Here</ion-card-header>
-      <ion-card-content>
-        Article snippet goes here... This is where all the useful information goes. In other words: anything as long as it's not about you.
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>Article Title Goes Here</ion-card-header>
-      <ion-card-content>
-        Article snippet goes here... I like chocolate and strawberries and rainbows and cupcakes and death
-      </ion-card-content>
-    </ion-card> -->
+  <h4 *ngIf="noResults" text-center>No results found.</h4>
 
+  <ion-list>
     <ion-card *ngFor="let article of articles">
       <ion-card-header>
-        {{article.title}}
+        <b><{{article.title}}</b>
       </ion-card-header> 
       <ion-card-content>
-        <b>Published: </b> {{article.date}}<br>
-        <b>By: </b> {{article.author.name}}<br><br>
+        <b>Author: </b> {{article.author.name}}
+        <b>Published: </b> {{article.date}}<br><br><br>
         <p class="excerpt" [innerHTML]="article.excerpt"></p>
       </ion-card-content>     
     </ion-card>
