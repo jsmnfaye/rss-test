@@ -11,6 +11,7 @@ export class SearchPage {
   searchTerm: string = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+
   }
 
   ionViewDidLoad() {
@@ -18,7 +19,8 @@ export class SearchPage {
   }
 
   goAway(){
-    this.viewCtrl.dismiss();
+    let data = { keyword: this.searchTerm };
+    this.viewCtrl.dismiss(data);
   }
 
 }

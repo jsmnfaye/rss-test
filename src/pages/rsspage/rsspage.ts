@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { EntryPage } from '../entry/entry';
 import { Http } from '@angular/http';
 import { AdsProvider } from '../../providers/ads/ads';
@@ -30,6 +30,7 @@ export class RsspagePage {
     public modalCtrl: ModalController, 
     private http: Http, 
     public loadCtrl: LoadingController,
+    public alertCtrl: AlertController,
     private rss: RssFeedProvider,
     public adsProvider: AdsProvider
   ) { this.adsProvider.showAd(); }
@@ -56,6 +57,13 @@ export class RsspagePage {
     this.rss.getTheGoods(this.pageNo, this.category).then(data => {
       this.news = data;
       this.pageReady = true;
+    }, (err) => {
+      let alert = this.alertCtrl.create({
+        title: 'Oops!',
+        message: 'Failed to fetch articles. Sorry about that.',
+        buttons: ['let me check']
+      });
+      alert.present();
     });
     if(this.pageReady === true){
       loading.dismiss();
@@ -95,6 +103,13 @@ export class RsspagePage {
 
   goSearch(){
     let modal = this.modalCtrl.create('SearchPage');
+    modal.onDidDismiss(data => {
+      if(data.keyword === ""){
+        console.log('Just closed the window, nothing to see here...');
+      } else {
+        console.log(data);
+      }
+    });
     modal.present();
   }
 
