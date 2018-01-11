@@ -19,7 +19,7 @@
     <ion-input [(ngModel)]="searchTerm" type="text" placeholder="Enter keyword here..."></ion-input>
   </ion-item>
 
-  <button ion-button block>go</button>
+  <button ion-button block (click)="searchThis()">go</button>
 
   <p>
     {{searchTerm}}

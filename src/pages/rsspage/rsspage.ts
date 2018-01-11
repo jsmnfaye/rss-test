@@ -98,6 +98,13 @@ export class RsspagePage {
       for(let i = 0; i<allNews.length; i++){
         this.news.push(allNews[i]);
       }
+    }, (err) => {
+      let alert = this.alertCtrl.create({
+        title: 'Oops!',
+        message: 'Failed to fetch articles. Are you sure your phone is connected to the internet?',
+        buttons: ['let me check']
+      });
+      alert.present();
     });
   }
 
@@ -107,7 +114,7 @@ export class RsspagePage {
       if(data.keyword === ""){
         console.log('Just closed the window, nothing to see here...');
       } else {
-        console.log(data);
+        this.navCtrl.push('SearchResultPage', data);
       }
     });
     modal.present();

@@ -19,6 +19,11 @@ export class SearchPage {
   }
 
   goAway(){
+    let data = { keyword: '' };
+    this.viewCtrl.dismiss(data);
+  }
+
+  searchThis(){
     let data = { keyword: this.searchTerm };
     this.viewCtrl.dismiss(data);
   }
