@@ -4,6 +4,7 @@ import { EntryPage } from '../../entry/entry';
 import { Http } from '@angular/http';
 import { RssFeedProvider } from '../../../providers/rss-feed/rss-feed';
 import 'rxjs';
+import { RsspagePage } from '../../rsspage/rsspage';
 
 @IonicPage()
 @Component({
@@ -89,6 +90,10 @@ export class BibaMarianasPage {
       }
     });
     this.pageReady = true;
+  }
+
+  goHome(){
+    this.navCtrl.setRoot(RsspagePage);
   }
 
 }

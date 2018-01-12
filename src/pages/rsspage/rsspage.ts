@@ -6,8 +6,6 @@ import { AdsProvider } from '../../providers/ads/ads';
 
 import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
 
-declare var RSSParser;
-
 @Component({
   selector: 'page-rsspage',
   templateUrl: 'rsspage.html',
@@ -81,6 +79,7 @@ export class RsspagePage {
     modal.present();
   }
   
+  //BUUUUUZZ LIGHT YEAR
   toInfinityAndBeyond(infiniteScroll){
     setTimeout(() => {
       this.pageNo = this.pageNo+1;
