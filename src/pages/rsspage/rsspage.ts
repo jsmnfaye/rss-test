@@ -20,7 +20,6 @@ export class RsspagePage {
   category: string = '';
   totalPages: number;
   errorMessage: string;
-  pageReady: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -54,7 +53,7 @@ export class RsspagePage {
 
     this.rss.getTheGoods(this.pageNo, this.category).then(data => {
       this.news = data;
-      this.pageReady = true;
+      loading.dismiss();
     }, (err) => {
       let alert = this.alertCtrl.create({
         title: 'Oops!',
@@ -63,9 +62,6 @@ export class RsspagePage {
       });
       alert.present();
     });
-    if(this.pageReady === true){
-      loading.dismiss();
-    }
     // console.log(this.news);
     this.pageNo++;
   }
@@ -93,7 +89,7 @@ export class RsspagePage {
 
   getTheGoods(pageNo: number, category: string){
     this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo+'&filter[category_name]='+category).map(res => res.json()).subscribe(allNews =>{
-      console.log("total number of data: "+allNews.length);
+      // console.log("total number of data: "+allNews.length);
       for(let i = 0; i<allNews.length; i++){
         this.news.push(allNews[i]);
       }

@@ -31,4 +31,10 @@
       </ion-card-content>     
     </ion-card>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="toInfinityAndBeyond($event)">
+    <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading articles..."></ion-infinite-scroll-content>
+    <!-- crescent loading looks nice too! -->
+  </ion-infinite-scroll>
+
 </ion-content>
