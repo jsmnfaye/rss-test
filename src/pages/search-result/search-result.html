@@ -1,6 +1,11 @@
 <ion-header>
 
   <ion-navbar color="primary">
+    <ion-buttons end>
+        <button ion-button icon-only (click)="goAway()">
+          <ion-icon name="close"></ion-icon> 
+        </button>
+    </ion-buttons>
     <ion-title>Search Results</ion-title>
   </ion-navbar>
 
@@ -21,7 +26,7 @@
       </ion-card-header> 
       <ion-card-content>
         <b>Author: </b> {{article.author.name}}
-        <b>Published: </b> {{article.date}}<br><br><br>
+        <b>Published: </b> {{article.date}}
         <p class="excerpt" [innerHTML]="article.excerpt"></p>
       </ion-card-content>     
     </ion-card>

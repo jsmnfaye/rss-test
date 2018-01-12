@@ -108,15 +108,41 @@ export class RsspagePage {
   }
 
   goSearch(){
-    let modal = this.modalCtrl.create('SearchPage');
-    modal.onDidDismiss(data => {
-      if(data.keyword === ""){
-        console.log('Just closed the window, nothing to see here...');
-      } else {
-        this.navCtrl.push('SearchResultPage', data);
-      }
+    let searchprompt = this.alertCtrl.create({
+      title: 'Search',
+      message: 'Enter a keyword you would like to do a search on.',
+      inputs: [
+        {
+          name: 'keyword',
+          placeholder: 'What are you looking for?'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Oops, nevermind.');
+          }
+        },
+        {
+          text: 'Go',
+          handler: data => {
+            let searchModal = this.modalCtrl.create('SearchResultPage', { keyword: data.keyword });
+            if(data.keyword == ""){
+              let alert = this.alertCtrl.create({
+                title: 'Whoa',
+                message: 'You didn\'t type in anything!',
+                buttons: ['oops']
+              });
+              alert.present();
+            } else {
+              searchModal.present();
+            }
+          }
+        }
+      ]
     });
-    modal.present();
+    searchprompt.present();
   }
 
 }

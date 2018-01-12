@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavParams, LoadingController, AlertController, ViewController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 @IonicPage()
@@ -18,7 +18,8 @@ export class SearchResultPage {
     public navParams: NavParams,
     public http: Http,
     private loader: LoadingController,
-    private alerter: AlertController
+    private alerter: AlertController,
+    private viewCtrl: ViewController
   ) {  }
 
   ionViewDidLoad() {
@@ -33,12 +34,6 @@ export class SearchResultPage {
       loading.dismiss();
       if (this.articles.length == 0){
         this.noResults = true;
-        // let alert = this.alerter.create({
-        //   title: 'Whoops.',
-        //   message: 'Your search term didn\'t return any results. Why not try searching for a different term?',
-        //   buttons: ['ok']
-        // });
-        // alert.present();
       }
     }, (err) => {
       let alert = this.alerter.create({
@@ -51,12 +46,6 @@ export class SearchResultPage {
   }
 
   getTheGoods(searchTerm){
-    // this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?filter[s]='+searchTerm).map(res => res.json()).subscribe(data =>{
-    //   this.articles = data;
-    //   // if(this.articles = )
-    //   console.log(this.articles);
-    //   this.pageReady = true;
-    // });
 
     if(this.articles){
       return Promise.resolve(this.articles);
@@ -69,6 +58,10 @@ export class SearchResultPage {
         resolve(this.articles);
       });
     });
+  }
+
+  goAway(){
+    this.viewCtrl.dismiss();
   }
 
 }
