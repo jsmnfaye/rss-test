@@ -27,35 +27,35 @@ export class MyApp {
   goToPage(category: number){
     console.clear();
     if(category == 1){
-      this.nav.setRoot('HeadlinesPage');
+      this.nav.push('HeadlinesPage');
     } else if(category == 2) {
-      this.nav.setRoot('FeaturedPage');
+      this.nav.push('FeaturedPage');
     } else if(category == 3) {
-      this.nav.setRoot('BreakingNewsPage');
+      this.nav.push('BreakingNewsPage');
     } else if(category == 4) {
-      this.nav.setRoot('LocalNewsPage');
+      this.nav.push('LocalNewsPage');
     } else if(category == 5) {
-      this.nav.setRoot('SportsPage');
+      this.nav.push('SportsPage');
     } else if(category == 6) {
-      this.nav.setRoot('OpinionPage');
+      this.nav.push('OpinionPage');
     } else if(category == 7) {
-      this.nav.setRoot('EditorLettersPage');
+      this.nav.push('EditorLettersPage');
     } else if(category == 8) {
-      this.nav.setRoot('LifeAndStylePage');
+      this.nav.push('LifeAndStylePage');
     } else if(category == 9) {
-      this.nav.setRoot('EnvironmentPage');
+      this.nav.push('EnvironmentPage');
     } else if(category == 10) {
-      this.nav.setRoot('BusinessPage');
+      this.nav.push('BusinessPage');
     } else if(category == 11) {
-      this.nav.setRoot('CommunityPage');
+      this.nav.push('CommunityPage');
     } else if(category == 12) {
-      this.nav.setRoot('CampusLifePage');
+      this.nav.push('CampusLifePage');
     } else if(category == 13) {
-      this.nav.setRoot('FotogalleriaPage');
+      this.nav.push('FotogalleriaPage');
     } else if(category == 14) {
-      this.nav.setRoot('PacificPage');
+      this.nav.push('PacificPage');
     } else if(category == 15) {
-      this.nav.setRoot('BibaMarianasPage');
+      this.nav.push('BibaMarianasPage');
     }
     this.menuCtrl.close();
   }
