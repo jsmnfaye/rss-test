@@ -55,7 +55,7 @@ export class BibaMarianasPage {
       this.pageNo++;
       loading.dismiss();
       let toast = this.toast.create({
-        message: 'Showing only sports news.',
+        message: 'Showing only Biba Marianas! news.',
         duration: 3000
       });
       toast.present();

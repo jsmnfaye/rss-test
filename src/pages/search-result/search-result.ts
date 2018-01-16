@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, LoadingController, AlertController, ViewController } from 'ionic-angular';
+import { IonicPage, NavParams, ModalController, LoadingController, AlertController, ViewController } from 'ionic-angular';
 import { Http } from '@angular/http';
+
+import { EntryPage } from '../entry/entry';
 
 @IonicPage()
 @Component({
@@ -22,7 +24,8 @@ export class SearchResultPage {
     public http: Http,
     private loader: LoadingController,
     private alerter: AlertController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    public modalCtrl: ModalController
   ) {  }
 
   ionViewDidLoad() {
@@ -90,6 +93,15 @@ export class SearchResultPage {
       });
       alert.present();
     });
+  }
+
+  openArticle(article){
+    let data = {
+      entryData: article
+    };
+
+    let articleModal = this.modalCtrl.create(EntryPage, data);
+    articleModal.present();
   }
 
   goAway(){
