@@ -1,4 +1,8 @@
 page-rsspage {
+    .thebody{
+        background: #fff;
+    }
+    
     .excerpt{
         white-space: nowrap;
         overflow: hidden;
@@ -7,5 +11,17 @@ page-rsspage {
 
     p.block{
         width: 100%;
+    }
+
+    ion-card-content, ion-card-header{
+        background: #f0f0f0;
+    }
+
+    ion-list-header{
+        margin-bottom: 0px;
+        padding: 0px;
+        background: rgb(185, 185, 185) !important;
+        color: rgb(247, 247, 247) !important;
+        font-weight: bold !important;
     }
 }

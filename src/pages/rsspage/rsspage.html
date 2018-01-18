@@ -17,7 +17,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="thebody">
   <!-- <h1>So is the infinite scroll working or not?</h1> -->
 
   <!-- This is where the article will appear -->
@@ -39,6 +39,7 @@
     </ion-list-header>
     <ion-card *ngFor="let entry of news" (click)="openEntry(entry)">
       <img *ngIf="entry.featured_image!=null" src="{{entry.featured_image.source}}">
+      <img *ngIf="entry.featured_image==null" src="assets/imgs/banner-img.png">
       <ion-card-header>
         <b>{{entry.title}}</b>
       </ion-card-header> 
