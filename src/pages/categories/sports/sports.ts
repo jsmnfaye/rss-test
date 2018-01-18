@@ -4,8 +4,6 @@ import { EntryPage } from '../../entry/entry';
 import { Http } from '@angular/http';
 import 'rxjs';
 
-import { RssFeedProvider } from '../../../providers/rss-feed/rss-feed';
-
 @IonicPage()
 @Component({
   selector: 'page-sports',
@@ -25,8 +23,7 @@ export class SportsPage {
     public navParams: NavParams, 
     public modalCtrl: ModalController, 
     private http: Http, 
-    public loadCtrl: LoadingController,
-    private rss: RssFeedProvider
+    public loadCtrl: LoadingController
   ) { 
     this.category = 'sports';
    }

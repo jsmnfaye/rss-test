@@ -17,11 +17,11 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <!-- <h1>So is the infinite scroll working or not?</h1> -->
 
   <!-- This is where the article will appear -->
-  <ion-list>
+  <!-- <ion-list>
     <ion-list-header>
       Latest News
     </ion-list-header>
@@ -31,13 +31,31 @@
       <b>Published: </b>{{entry.date}}</p>
       <div [innerHTML]="entry.excerpt"></div>
     </ion-item>
+  </ion-list> -->
+ 
+  <ion-list>
+    <ion-list-header>
+      Latest News
+    </ion-list-header>
+    <ion-card *ngFor="let entry of news" (click)="openEntry(entry)">
+      <img *ngIf="entry.featured_image!=null" src="{{entry.featured_image.source}}">
+      <ion-card-header>
+        <b>{{entry.title}}</b>
+      </ion-card-header> 
+      <ion-card-content>
+        <!-- <h1 *ngIf="entry.featured_image!=null">hahha loser</h1> -->
+        <b>Author: </b> {{entry.author.name}}<br>
+        <b>Published: </b> {{entry.date}}
+        <p class="excerpt" [innerHTML]="entry.excerpt"></p>
+      </ion-card-content>     
+    </ion-card>
   </ion-list>
   <!-- end of article -->
   <!-- infinite scroll for more articles to load: -->
-  <ion-infinite-scroll (ionInfinite)="toInfinityAndBeyond($event)">
-    <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading articles..."></ion-infinite-scroll-content>
+  <!-- <ion-infinite-scroll (ionInfinite)="toInfinityAndBeyond($event)">
+    <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading articles..."></ion-infinite-scroll-content> -->
     <!-- crescent loading looks nice too! -->
-  </ion-infinite-scroll>
+  <!-- </ion-infinite-scroll> -->
 
 </ion-content>
 

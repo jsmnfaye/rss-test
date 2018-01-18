@@ -1,3 +1,15 @@
 page-entry {
+    .article-content{
+        width: 100%;
+        background: white;
+        position: absolute;
+    }
 
-}
+    .article-img{
+        width: 100%;
+        background-position: center center;
+        background-size: cover;
+        height: 250px;
+    }
+
+}  

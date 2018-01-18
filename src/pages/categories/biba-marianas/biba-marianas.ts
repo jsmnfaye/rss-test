@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
 import { EntryPage } from '../../entry/entry';
 import { Http } from '@angular/http';
-import { RssFeedProvider } from '../../../providers/rss-feed/rss-feed';
 import 'rxjs';
 import { RsspagePage } from '../../rsspage/rsspage';
 
@@ -25,8 +24,7 @@ export class BibaMarianasPage {
     public navParams: NavParams, 
     public modalCtrl: ModalController, 
     private http: Http, 
-    public loadCtrl: LoadingController,
-    private rss: RssFeedProvider
+    public loadCtrl: LoadingController
   ) { 
     this.category = 'sports';
    }

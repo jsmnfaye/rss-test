@@ -1,3 +1,11 @@
 page-rsspage {
+    .excerpt{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
+    p.block{
+        width: 100%;
+    }
 }

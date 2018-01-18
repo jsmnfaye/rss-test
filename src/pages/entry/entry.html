@@ -10,8 +10,14 @@
 
 </ion-header>
 
-<ion-content padding>
-  <h1>{{entry.title}}</h1>
-  <p>Author: {{entry.author.name}}</p>
-  <div [innerHTML]="entry.content"></div>
+<ion-content>
+
+  <!-- <div class="article-img" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
+  </div> -->
+
+  <div class="article-content" padding>
+    <h2>{{entry.title}}</h2>
+    <p><b>By: </b>{{entry.author.name}}</p>
+    <div [innerHTML]="entry.content"></div>
+  </div>
 </ion-content>
