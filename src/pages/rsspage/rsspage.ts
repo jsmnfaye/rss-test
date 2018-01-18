@@ -126,7 +126,7 @@ export class RsspagePage {
             let searchModal = this.modalCtrl.create('SearchResultPage', { keyword: data.keyword });
             if(data.keyword == ""){
               let alert = this.alertCtrl.create({
-                title: 'Whoa',
+                title: 'Whoa there',
                 message: 'You didn\'t type in anything!',
                 buttons: ['oops']
               });

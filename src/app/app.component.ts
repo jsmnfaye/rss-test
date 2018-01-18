@@ -11,6 +11,7 @@ import { RsspagePage } from '../pages/rsspage/rsspage';
 export class MyApp {
   @ViewChild(Nav) nav;
   rootPage:any = RsspagePage;
+  pages: Array<{category_name: string, component: any, slug: string}>;
 
   constructor(
     platform: Platform, 
@@ -18,45 +19,97 @@ export class MyApp {
     splashScreen: SplashScreen,
     public menuCtrl: MenuController
   ) {
+    this.pages = [
+      {
+          category_name : "Headlines",
+          component :  'HeadlinesPage',
+          slug : "headlines"
+      },
+      {
+          category_name : "Featured",
+          component :  "FeaturedPage",
+          slug : "featured"
+      },
+      {
+          category_name : "Breaking News",
+          component :  "BreakingNewsPage",
+          slug : "breaking-news"
+      },
+      {
+          category_name : "Local News",
+          component :  "LocalNewsPage",
+          slug : "local-news"
+      },
+      {
+          category_name : "Sports",
+          component :  "SportsPage",
+          slug : "sports"
+      },
+      {
+          category_name : "Opinion",
+          component :  "OpinionPage",
+          slug : "opinion"
+      },
+      {
+          category_name : "Letters to the Editor",
+          component :  "EditorLettersPage",
+          slug : "letters-to-the-editor"
+      },
+      {
+          category_name : "Life and Style",
+          component :  "LifeAndStylePage",
+          slug : "life-and-style"
+      },
+      {
+          category_name : "Environment",
+          component :  "EnvironmentPage",
+          slug : "environment"
+      },
+      {
+          category_name : "Business",
+          component :  "BusinessPage",
+          slug : "business"
+      },
+      {
+          category_name : "Community",
+          component :  "CommunityPage",
+          slug : "community"
+      },
+      {
+          category_name : "Campus Life",
+          component :  "CampusLifePage",
+          slug : "campus-life"
+      },
+      {
+          category_name : "Fotogalleria",
+          component :  "FotogalleriaPage",
+          slug : "fotogalleria"
+      },
+      {
+          category_name : "Pacific",
+          component :  "PacificPage",
+          slug : "pacific"
+      },
+      {
+          category_name : "Biba Marianas!",
+          component :  "BibaMarianasPage",
+          slug : "biba-marianas"
+      }
+  ];
+
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
     });
   }
 
-  goToPage(category: number){
+  goToPage(page){
     console.clear();
-    if(category == 1){
-      this.nav.push('HeadlinesPage');
-    } else if(category == 2) {
-      this.nav.push('FeaturedPage');
-    } else if(category == 3) {
-      this.nav.push('BreakingNewsPage');
-    } else if(category == 4) {
-      this.nav.push('LocalNewsPage');
-    } else if(category == 5) {
-      this.nav.push('SportsPage');
-    } else if(category == 6) {
-      this.nav.push('OpinionPage');
-    } else if(category == 7) {
-      this.nav.push('EditorLettersPage');
-    } else if(category == 8) {
-      this.nav.push('LifeAndStylePage');
-    } else if(category == 9) {
-      this.nav.push('EnvironmentPage');
-    } else if(category == 10) {
-      this.nav.push('BusinessPage');
-    } else if(category == 11) {
-      this.nav.push('CommunityPage');
-    } else if(category == 12) {
-      this.nav.push('CampusLifePage');
-    } else if(category == 13) {
-      this.nav.push('FotogalleriaPage');
-    } else if(category == 14) {
-      this.nav.push('PacificPage');
-    } else if(category == 15) {
-      this.nav.push('BibaMarianasPage');
-    }
+    let data = {
+        pageInfo: page
+    };
+    console.log(data);
+    this.nav.setRoot('CategoryPage', data);
     this.menuCtrl.close();
   }
 

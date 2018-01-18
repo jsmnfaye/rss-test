@@ -8,21 +8,7 @@
         <ion-grid>
             <ion-row>
                 <ion-list>
-                    <button ion-item (click)="goToPage(1)">Headlines</button>
-                    <button ion-item (click)="goToPage(2)">Featured</button>
-                    <button ion-item (click)="goToPage(3)">Breaking News</button>
-                    <button ion-item (click)="goToPage(4)">Local News</button>
-                    <button ion-item (click)="goToPage(5)">Sports</button>
-                    <button ion-item (click)="goToPage(6)">Opinion</button>
-                    <button ion-item (click)="goToPage(7)">Letters to the Editor</button>
-                    <button ion-item (click)="goToPage(8)">Life and Style</button>
-                    <button ion-item (click)="goToPage(9)">Environment</button>
-                    <button ion-item (click)="goToPage(10)">Business</button>
-                    <button ion-item (click)="goToPage(11)">Community</button>
-                    <button ion-item (click)="goToPage(12)">Campus Life</button>
-                    <button ion-item (click)="goToPage(13)">Fotogalleria</button>
-                    <button ion-item (click)="goToPage(14)">Pacific</button>
-                    <button ion-item (click)="goToPage(15)">Biba Marianas!</button>
+                    <button ion-item *ngFor="let page of pages" (click)="goToPage(page)">{{page.category_name}}</button>
                 </ion-list>
             </ion-row>
         </ion-grid>

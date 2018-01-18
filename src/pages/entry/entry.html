@@ -1,9 +1,9 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-buttons end>
-      <button ion-button large (click)="dismiss()">
-        <ion-icon name="close" color="light"></ion-icon>
+    <ion-buttons>
+      <button ion-button large (click)="dismiss()" icon-only>
+        <ion-icon name="arrow-dropleft-circle" color="light"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -12,8 +12,8 @@
 
 <ion-content>
 
-  <!-- <div class="article-img" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
-  </div> -->
+  <div *ngIf="entry.featured_image!==null" class="article-img" text-center [style.background-image]="'url(' + entry.featured_image.source + ')'">
+  </div>
 
   <div class="article-content" padding>
     <h2>{{entry.title}}</h2>
