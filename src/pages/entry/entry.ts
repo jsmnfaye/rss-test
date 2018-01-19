@@ -13,7 +13,6 @@ export class EntryPage {
   content: any;
   title: string;
   author: string;
-  category: string = 'HALLELUJAH!';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
     this.entry = this.navParams.get('entryData');
@@ -21,7 +20,7 @@ export class EntryPage {
 
   ionViewDidLoad() {
     let entryDetails = this.navParams.get('entryData');
-    console.clear();
+    // console.clear();
     console.log('Clicked entry is now initializing...');
     console.log(entryDetails);
   }
