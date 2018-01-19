@@ -9,15 +9,13 @@ import { AdMobFree } from '@ionic-native/admob-free';
 
 import { MyApp } from './app.component';
 import { RsspagePage } from '../pages/rsspage/rsspage';
-import { EntryPage } from '../pages/entry/entry'; 
 import { RssFeedProvider } from '../providers/rss-feed/rss-feed';
 import { AdsProvider } from '../providers/ads/ads';
 
 @NgModule({
   declarations: [
     MyApp,
-    RsspagePage,
-    EntryPage
+    RsspagePage
   ],
   imports: [
     BrowserModule,
@@ -27,8 +25,7 @@ import { AdsProvider } from '../providers/ads/ads';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    RsspagePage,
-    EntryPage
+    RsspagePage
   ],
   providers: [
     StatusBar,

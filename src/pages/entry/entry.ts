@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
+@IonicPage()
 @Component({
   selector: 'page-entry',
-  templateUrl: 'entry.html',
+  templateUrl: 'entry.html'
 })
 export class EntryPage {
 
@@ -12,6 +13,7 @@ export class EntryPage {
   content: any;
   title: string;
   author: string;
+  category: string = 'HALLELUJAH!';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
     this.entry = this.navParams.get('entryData');

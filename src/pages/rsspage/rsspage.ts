@@ -71,7 +71,7 @@ export class RsspagePage {
       entryData: entry 
     }
 
-    let modal = this.modalCtrl.create(EntryPage, data);
+    let modal = this.modalCtrl.create('EntryPage', data);
     modal.present();
   }
   
