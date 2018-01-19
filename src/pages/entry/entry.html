@@ -10,13 +10,14 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content class="thebody">
+
+  <div class="title"><h1>{{entry.title}}</h1></div>
 
   <div *ngIf="entry.featured_image!==null" class="article-img" text-center [style.background-image]="'url(' + entry.featured_image.source + ')'">
   </div>
 
-  <div class="article-content" padding>
-    <h2>{{entry.title}}</h2>
+  <div class="article-content">
     <p><b>By: </b>{{entry.author.name}}</p>
     <div [innerHTML]="entry.content"></div>
   </div>

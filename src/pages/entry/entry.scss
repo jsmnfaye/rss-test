@@ -3,6 +3,10 @@ page-entry {
         width: 100%;
         background: white;
         position: absolute;
+        font-size: 16px;
+        padding: 0px 18px 8px 20px;
+        line-height: 160%;
+        color: #525252;
     }
 
     .article-img{
@@ -12,4 +16,18 @@ page-entry {
         height: 250px;
     }
 
+    .thebody{
+        font-family: serif;
+        padding-top: 2px;
+    }
+
+    h1{
+        font-weight: bolder;
+        color: rgb(56, 56, 56);
+    }
+
+    .title{
+        padding: 0px;
+        margin: 0px 18px 8px 20px;
+    }
 }  
