@@ -1,12 +1,12 @@
 <ion-header>
 
   <ion-navbar color="primary">
+    <ion-title>Saipan Tribune</ion-title>
     <ion-buttons end>
       <button ion-button icon-only menuToggle>
         <ion-icon name="menu"></ion-icon> 
       </button>
     </ion-buttons>
-    <ion-title>Saipan Tribune</ion-title>
     <ion-buttons start>
       <button ion-button icon-only (click)="goSearch()">
         <ion-icon name="search"></ion-icon> 
@@ -23,14 +23,14 @@
     <ion-list-header>
       Latest News
     </ion-list-header>
-    <ion-card *ngFor="let entry of news" (click)="openEntry(entry)">
+    <ion-card *ngFor="let entry of news; let i = index" [attr.data-index]="i" (click)="openEntry(entry)">
+      <!-- <h2 *ngIf="i==0">why hello there</h2> -->
       <img *ngIf="entry.featured_image!=null" src="{{entry.featured_image.source}}">
       <img *ngIf="entry.featured_image==null" src="assets/imgs/banner-img.png">
       <ion-card-header>
         <b>{{entry.title}}</b>
       </ion-card-header> 
       <ion-card-content>
-        <!-- <h1 *ngIf="entry.featured_image!=null">hahha loser</h1> -->
         <b>Author: </b> {{entry.author.name}}<br>
         <b>Published: </b> {{entry.date}}
         <p class="excerpt" [innerHTML]="entry.excerpt"></p>

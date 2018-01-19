@@ -104,6 +104,7 @@ export class RsspagePage {
   }
 
   goSearch(){
+    this.adsProvider.hideAd();
     let searchprompt = this.alertCtrl.create({
       title: 'Search',
       message: 'Enter a keyword you would like to do a search on.',
@@ -118,6 +119,7 @@ export class RsspagePage {
           text: 'Cancel',
           handler: data => {
             console.log('Oops, nevermind.');
+            this.adsProvider.showAd();
           }
         },
         {
@@ -131,8 +133,10 @@ export class RsspagePage {
                 buttons: ['oops']
               });
               alert.present();
+              this.adsProvider.showAd();
             } else {
               searchModal.present();
+              this.adsProvider.showAd();
             }
           }
         }

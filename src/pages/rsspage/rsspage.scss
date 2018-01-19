@@ -9,6 +9,13 @@ page-rsspage {
         text-overflow: ellipsis;
     }
 
+    .article-img{
+        width: 100%;
+        background-position: center center;
+        background-size: cover;
+        height: 250px;
+    }
+
     p.block{
         width: 50%;
     }

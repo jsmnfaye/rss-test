@@ -23,4 +23,12 @@ export class AdsProvider {
     });
   }
 
+  hideAd(){
+    this.admob.banner.hide().then((res) => {
+      console.log(res);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
 }
