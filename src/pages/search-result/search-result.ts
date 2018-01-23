@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavParams, ModalController, LoadingController, AlertController, ViewController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
-import { EntryPage } from '../entry/entry';
-
 @IonicPage()
 @Component({
   selector: 'page-search-result',
@@ -100,7 +98,7 @@ export class SearchResultPage {
       entryData: article
     };
 
-    let articleModal = this.modalCtrl.create(EntryPage, data);
+    let articleModal = this.modalCtrl.create('EntryPage', data);
     articleModal.present();
   }
 

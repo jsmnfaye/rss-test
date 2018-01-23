@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, LoadingController, AlertController } from 'ionic-angular';
-import { EntryPage } from '../entry/entry';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { AdsProvider } from '../../providers/ads/ads';
 
 import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
 
+@IonicPage()
 @Component({
   selector: 'page-rsspage',
   templateUrl: 'rsspage.html',

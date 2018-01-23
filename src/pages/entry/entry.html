@@ -12,7 +12,7 @@
 
 <ion-content class="thebody">
 
-  <div class="title"><h1>{{entry.title}}</h1></div>
+  <div class="title"><h1>{{entry.title | htmldecoder}}</h1></div>
 
   <div *ngIf="entry.featured_image!==null" class="article-img" text-center [style.background-image]="'url(' + entry.featured_image.source + ')'">
   </div>

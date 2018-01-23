@@ -28,7 +28,7 @@
       <img *ngIf="entry.featured_image!=null" src="{{entry.featured_image.source}}">
       <img *ngIf="entry.featured_image==null" src="assets/imgs/banner-img.png">
       <ion-card-header>
-        <b>{{entry.title}}</b>
+        <b>{{entry.title | htmldecoder}}</b>
       </ion-card-header> 
       <ion-card-content>
         <b>Author: </b> {{entry.author.name}}<br>

@@ -3,14 +3,12 @@ import { Platform, Nav, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { RsspagePage } from '../pages/rsspage/rsspage';
-
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav;
-  rootPage:any = RsspagePage;
+  rootPage:any = 'RsspagePage';
   pages: Array<{category_name: string, component: any, slug: string}>;
 
   constructor(
