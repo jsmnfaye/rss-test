@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
 
   <ion-navbar color="primary">
     <ion-buttons>
@@ -8,9 +8,23 @@
     </ion-buttons>
   </ion-navbar>
 
-</ion-header>
+</ion-header> -->
 
-<ion-content class="thebody">
+<ion-content class="thebody" #myContent fullscreen>
+
+  <shrinking-head [scrollArea]='myContent' headerHeight='50'>
+    <ion-header>
+
+        <ion-navbar color="primary">
+          <ion-buttons>
+            <button ion-button large (click)="dismiss()" icon-only>
+              <ion-icon name="arrow-round-back" color="light"></ion-icon>
+            </button>
+          </ion-buttons>
+        </ion-navbar>
+      
+      </ion-header>
+  </shrinking-head>
 
   <div class="title"><h1>{{entry.title | htmldecoder}}</h1></div>
 

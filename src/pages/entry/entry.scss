@@ -1,4 +1,15 @@
 page-entry {
+    shrinking-head{
+        display: flex;
+        padding:0px;
+        background-color: #860038;
+        margin-top:0px;
+    }
+
+    .back{
+        padding: 5px;
+    }
+
     .article-content{
         width: 100%;
         background: white;
@@ -11,14 +22,14 @@ page-entry {
 
     .article-img{
         width: 100%;
-        background-position: center center;
+        background-position: top center;
         background-size: cover;
         height: 250px;
     }
 
     .thebody{
         font-family: serif;
-        padding-top: 2px;
+        padding-top: 0px;
     }
 
     h1{

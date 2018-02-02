@@ -31,15 +31,6 @@ export class RsspagePage {
     private rss: RssFeedProvider,
     public adsProvider: AdsProvider
   ) { this.adsProvider.showAd(); }
-
-  refreshMe(refresher){
-    console.log('Begin async operation', refresher);
-
-    setTimeout(() => {
-      console.log('Async operation has ended.');
-      refresher.complete();
-    }, 2000);
-  }
   
   ionViewDidLoad() {
     let loading = this.loadCtrl.create({
@@ -48,7 +39,7 @@ export class RsspagePage {
     });
 
     loading.present();
-    console.clear();
+    // console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
     this.rss.getTheGoods(this.pageNo, this.category).then(data => {

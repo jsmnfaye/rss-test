@@ -78,11 +78,11 @@ export class MyApp {
           component :  "CampusLifePage",
           slug : "campus-life"
       },
-      {
-          category_name : "Fotogalleria",
-          component :  "FotogalleriaPage",
-          slug : "fotogalleria"
-      },
+    //   {
+    //       category_name : "Fotogalleria",
+    //       component :  "FotogalleriaPage",
+    //       slug : "fotogalleria"
+    //   },
       {
           category_name : "Pacific",
           component :  "PacificPage",

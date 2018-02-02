@@ -24,10 +24,10 @@
       Latest News
     </ion-list-header>
     <ion-card *ngFor="let entry of news; let i = index" [attr.data-index]="i" (click)="openEntry(entry)">
-      <!-- <h2 *ngIf="i==0">why hello there</h2> -->
-      <img *ngIf="entry.featured_image!=null" src="{{entry.featured_image.source}}">
-      <img *ngIf="entry.featured_image==null" src="assets/imgs/banner-img.png">
-      <ion-card-header>
+      <div *ngIf="entry.featured_image!==null" class="entryImage" text-center [style.background-image]="'url(' + entry.featured_image.source + ')'">
+      </div>
+      <!-- <img *ngIf="entry.featured_image==null" src="assets/imgs/banner-img.png"> -->
+      <ion-card-header style="white-space: normal">
         <b>{{entry.title | htmldecoder}}</b>
       </ion-card-header> 
       <ion-card-content>

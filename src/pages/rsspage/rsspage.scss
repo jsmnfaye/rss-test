@@ -10,15 +10,21 @@ page-rsspage {
         text-overflow: ellipsis;
     }
 
-    .article-img{
+    .entryImage{
         width: 100%;
-        background-position: center center;
+        background-position: top center;
         background-size: cover;
-        height: 250px;
+        height: 200px;
     }
 
     p.block{
         width: 50%;
+    }
+
+    ion-card img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     ion-card-content, ion-card-header{
