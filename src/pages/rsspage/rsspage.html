@@ -32,7 +32,7 @@
       </ion-card-header> 
       <ion-card-content>
         <b>Author: </b> {{entry.author.name}}<br>
-        <b>Published: </b> {{entry.date}}
+        <b>Published: </b> {{entry.date | date:'fullDate' }}
         <p class="excerpt" [innerHTML]="entry.excerpt"></p>
       </ion-card-content>     
     </ion-card>

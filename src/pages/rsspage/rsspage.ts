@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
-import { AdsProvider } from '../../providers/ads/ads';
 
+import { AdsProvider } from '../../providers/ads/ads';
 import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
 
 @IonicPage()
