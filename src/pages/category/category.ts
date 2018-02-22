@@ -61,6 +61,7 @@ export class CategoryPage {
     }, 2000);
   }
 
+  //fetch articles
   getTheGoods(pageNo: number, category){
     console.log('page number '+ pageNo +' '+'term: '+category);
 

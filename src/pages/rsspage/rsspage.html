@@ -6,7 +6,7 @@
         <ion-icon name="menu"></ion-icon> 
       </button>
     <!-- </ion-buttons> -->
-    <ion-title class="headline">Saipan Tribune</ion-title>
+    <!-- <ion-title class="headline">Saipan Tribune</ion-title> -->
     <ion-buttons start>
       <button ion-button icon-only (click)="goSearch()" right>
         <ion-icon name="search"></ion-icon> 
@@ -18,9 +18,11 @@
 
 
 <ion-content class="thebody">
- 
   <ion-list>
-    <ion-list-header>
+    <ion-list-header class="top-border" text-center>
+      <img src="assets/imgs/saipan-logo.png" style="width: 80%">
+    </ion-list-header>
+    <ion-list-header class="bottom-border">
       Latest News
     </ion-list-header>
     <ion-card *ngFor="let entry of news; let i = index" [attr.data-index]="i" (click)="openEntry(entry)">
@@ -31,10 +33,16 @@
         <b>{{entry.title | htmldecoder}}</b>
       </ion-card-header> 
       <ion-card-content>
-        <b>Author: </b> {{entry.author.name}}<br>
-        <b>Published: </b> {{entry.date | date:'fullDate' }}
-        <p class="excerpt" [innerHTML]="entry.excerpt"></p>
+        <!-- <b>Author: </b> {{entry.author.name}}<br>
+        <b>Published: </b> {{entry.date | date:'fullDate' }} -->
+        <!-- <p class="excerpt" [innerHTML]="entry.excerpt"></p> -->
       </ion-card-content>     
+      <ion-row>
+        <ion-col>
+          <p>Published in {{entry.terms.category[0].name}} by <b>{{entry.author.name}}</b><br>
+          on {{entry.date | date: 'fullDate'}}</p>
+        </ion-col>
+      </ion-row>
     </ion-card>
   </ion-list>
   <!-- end of article -->

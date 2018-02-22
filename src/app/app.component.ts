@@ -92,6 +92,11 @@ export class MyApp {
           category_name : "Biba Marianas!",
           component :  "BibaMarianasPage",
           slug : "biba-marianas"
+      },
+      {
+          category_name: "Fake Page",
+          component: "FakeNewsPage",
+        slug: "fake-news"
       }
   ];
 

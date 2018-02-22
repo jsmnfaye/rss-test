@@ -44,6 +44,7 @@ export class RsspagePage {
 
     this.rss.getTheGoods(this.pageNo, this.category).then(data => {
       this.news = data;
+      console.log(this.news);
       loading.dismiss();
     }, (err) => {
       let alert = this.alertCtrl.create({
