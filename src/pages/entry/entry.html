@@ -4,23 +4,29 @@
     <ion-header>
 
         <ion-navbar color="primary">
-          <ion-buttons>
+          <!-- <ion-buttons>
             <button ion-button large (click)="dismiss()" icon-only>
               <ion-icon name="arrow-round-back" color="light"></ion-icon>
             </button>
-          </ion-buttons>
+          </ion-buttons> -->
         </ion-navbar>
       
       </ion-header>
   </shrinking-head>
-
-  <div class="title"><h1>{{entry.title | htmldecoder}}</h1></div>
+  <br>
+  <div class="title">
+    <p><b><i>
+        {{entry.author.name}}
+      </i></b><br>
+        {{entry.date | date: 'fullDate'}}
+    </p>
+    <h1>{{entry.title | htmldecoder}}</h1>
+  </div>
 
   <div *ngIf="entry.featured_image!==null" class="article-img" text-center [style.background-image]="'url(' + entry.featured_image.source + ')'">
   </div>
 
   <div class="article-content">
-    <p><b>By: </b>{{entry.author.name}}</p>
     <div [innerHTML]="entry.content | prettifier"></div>
   </div>
 </ion-content>

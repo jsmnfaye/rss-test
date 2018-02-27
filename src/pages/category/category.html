@@ -19,15 +19,18 @@
 
 <ion-content>
   <ion-list>
-    <ion-card *ngFor="let article of articles" (click)="openArticle(article)">
-      <ion-card-header>
-        <b>{{article.title | htmldecoder}}</b>
+    <ion-card *ngFor="let entry of articles" (click)="openArticle(entry)">
+      <div *ngIf="entry.featured_image!==null" class="entryImage" text-center [style.background-image]="'url(' + entry.featured_image.source + ')'">
+      </div>
+      <ion-card-header style="white-space: normal; background-color:#fff;">
+        <b>{{entry.title | htmldecoder}}</b>
       </ion-card-header> 
-      <ion-card-content>
-        <b>Author: </b> {{article.author.name}}<br>
-        <b>Published: </b> {{article.date}}
-        <p class="excerpt" [innerHTML]="article.excerpt"></p>
-      </ion-card-content>     
+      <ion-row>
+        <ion-col>
+          <p>Published by <b>{{entry.author.name}}</b><br>
+          on {{entry.date | date: 'fullDate'}}</p>
+        </ion-col>
+      </ion-row>
     </ion-card>
   </ion-list>
 

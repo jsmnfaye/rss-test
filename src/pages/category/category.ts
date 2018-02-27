@@ -99,8 +99,7 @@ export class CategoryPage {
       entryData: article
     };
 
-    let articleModal = this.modalCtrl.create('EntryPage', data);
-    articleModal.present();
+    this.navCtrl.push('EntryPage', data);
   }
 
   goHome(){

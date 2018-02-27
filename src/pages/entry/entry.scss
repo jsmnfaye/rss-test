@@ -25,10 +25,11 @@ page-entry {
         background-position: top center;
         background-size: cover;
         height: 250px;
+        margin-bottom:10px;
     }
 
     .thebody{
-        font-family: serif;
+        font-family: 'Ubuntu', serif;
         padding-top: 0px;
     }
 
@@ -40,5 +41,9 @@ page-entry {
     .title{
         padding: 0px;
         margin: 0px 18px 8px 20px;
+    }
+
+    .title p{
+        color: #4b4b4b;
     }
 }  

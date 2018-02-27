@@ -39,7 +39,6 @@ export class RsspagePage {
     });
 
     loading.present();
-    // console.clear();
     console.log('Hello, beautiful people of the Philippines!');
 
     this.rss.getTheGoods(this.pageNo, this.category).then(data => {
@@ -54,45 +53,15 @@ export class RsspagePage {
       });
       alert.present();
     });
-    // console.log(this.news);
     this.pageNo++;
   }
 
   openEntry(entry){
     let data = {
-      entryData: entry 
-    }
+      entryData: entry
+    };
 
-    let modal = this.modalCtrl.create('EntryPage', data);
-    modal.present();
-  }
-  
-  //BUUUUUZZ LIGHT YEAR
-  toInfinityAndBeyond(infiniteScroll){
-    setTimeout(() => {
-      this.pageNo = this.pageNo+1;
-      this.getTheGoods(this.pageNo, this.category),
-      error => this.errorMessage = <any> error;
-
-      console.log('Async operation has ended');
-      infiniteScroll.complete();
-    }, 2000);
-  }
-
-  getTheGoods(pageNo: number, category: string){
-    this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo+'&filter[category_name]='+category).map(res => res.json()).subscribe(allNews =>{
-      // console.log("total number of data: "+allNews.length);
-      for(let i = 0; i<allNews.length; i++){
-        this.news.push(allNews[i]);
-      }
-    }, (err) => {
-      let alert = this.alertCtrl.create({
-        title: 'Oops!',
-        message: 'Failed to fetch articles. Are you sure your phone is connected to the internet?',
-        buttons: ['let me check']
-      });
-      alert.present();
-    });
+    this.navCtrl.push('EntryPage', data);
   }
 
   goSearch(){
