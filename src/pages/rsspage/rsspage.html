@@ -22,28 +22,28 @@
     <ion-list-header class="top-border" text-center>
       <img src="assets/imgs/saipan-logo.png" style="width: 80%">
     </ion-list-header>
-    <!-- <ion-list-header class="bottom-border">
-      Latest News
-    </ion-list-header>
-    <ion-card *ngFor="let entry of news; let i = index" [attr.data-index]="i" (click)="openEntry(entry)">
-      <div *ngIf="entry.featured_image!==null" class="entryImage" text-center [style.background-image]="'url(' + entry.featured_image.source + ')'">
-      </div>
-      <ion-card-header style="white-space: normal; background-color:#fff;">
-        <b>{{entry.title | htmldecoder}}</b>
-      </ion-card-header> 
-      <ion-row>
-        <ion-col>
-          <p>Published in {{entry.terms.category[0].name}} by <b>{{entry.author.name}}</b><br>
-          on {{entry.date | date: 'fullDate'}}</p>
-        </ion-col>
-      </ion-row>
-    </ion-card> -->
+
+    <ion-item-group *ngIf="headlines.length!==0">
+      <ion-item-divider color="secondary">Headlines</ion-item-divider>
+      <button ion-item *ngFor="let entry of headlines" (click)="openEntry(entry)">
+          <ion-thumbnail *ngIf="entry.featured_image!==null" item-end>
+            <img src="{{entry.featured_image.source}}">
+          </ion-thumbnail>
+          <h1 style="white-space: normal">{{ entry.title | htmldecoder }}</h1>
+          <div [innerHTML]="entry.excerpt"></div>
+          <p>Published in {{entry.terms.category[0].name | htmldecoder }} by <b>{{entry.author.name}}</b><br>
+          on {{ entry.date | date: 'fullDate' }}</p>
+        </button>
+    </ion-item-group>
 
     <ion-item-group>
       <ion-item-divider color="secondary">Latest News</ion-item-divider>
-      <button ion-item *ngFor="let entry of news" (click)="openEntry(entry)">
-        <img *ngIf="entry.featured_image!==null" src="{{entry.featured_image.source}}">
+      <button ion-item *ngFor="let entry of featured" (click)="openEntry(entry)">
+        <ion-thumbnail *ngIf="entry.featured_image!==null" item-end>
+          <img src="{{entry.featured_image.source}}">
+        </ion-thumbnail>
         <h1 style="white-space: normal">{{ entry.title | htmldecoder }}</h1>
+        <div [innerHTML]="entry.excerpt"></div>
         <p>Published in {{entry.terms.category[0].name | htmldecoder }} by <b>{{entry.author.name}}</b><br>
         on {{ entry.date | date: 'fullDate' }}</p>
       </button>

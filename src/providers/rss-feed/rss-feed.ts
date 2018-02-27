@@ -11,14 +11,14 @@ export class RssFeedProvider {
     console.log('Hello, RSS Feed Provider!');
   }
   
-  getTheGoods(pageNo: number, category: string){
-    console.log('Page #'+pageNo+', '+category);
+  getTheGoods(page: number, category: string){
+    console.log('you picked category: '+category);
     if(this.data){
       return Promise.resolve(this.data);
     }
 
     return new Promise(resolve => {
-      this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+pageNo+'&filter[category_name]='+category).map(res => res.json()).subscribe(data => {
+      this.http.get('https://www.saipantribune.com/index.php/wp-json/posts?page='+page+'filter[category_name]='+category).map(res => res.json()).subscribe(data => {
         this.data = data;
         resolve(this.data);
       });

@@ -12,14 +12,12 @@ import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
 })
 export class RsspagePage {
 
-  targetUrl: string;
-  bnEntries: Array<any> = [];
-  headlineEntries: Array<any> = [];
-  news: any;
-  pageNo = 1;
+  pageNo: number = 1;
+  headlines: any[] = [];
+  headlineReady: boolean = false;
+  featured: any[] = [];
+  featuredReady: boolean = false;
   category: string = '';
-  totalPages: number;
-  errorMessage: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -32,7 +30,7 @@ export class RsspagePage {
     public adsProvider: AdsProvider
   ) { this.adsProvider.showAd(); }
   
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     let loading = this.loadCtrl.create({
       content: "Fetching latest articles...",
       duration: 3000
@@ -41,10 +39,17 @@ export class RsspagePage {
     loading.present();
     console.log('Hello, beautiful people of the Philippines!');
 
+    //get headlines
     this.rss.getTheGoods(this.pageNo, this.category).then(data => {
-      this.news = data;
-      console.log(this.news);
-      loading.dismiss();
+      data.forEach(element => {
+        if(element.terms.category[0].name=='Featured'){
+          this.featured.push(element);
+        }
+        else if(element.terms.category[0].name=='Headlines'){
+          this.headlines.push(element);
+        }
+      });
+      this.headlineReady = true;
     }, (err) => {
       let alert = this.alertCtrl.create({
         title: 'Oops!',
@@ -53,7 +58,12 @@ export class RsspagePage {
       });
       alert.present();
     });
-    this.pageNo++;
+
+    if(this.headlineReady){
+      loading.dismiss();
+      console.log(this.featured);
+      console.log(this.headlines);
+    }
   }
 
   openEntry(entry){
