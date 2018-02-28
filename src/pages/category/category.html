@@ -19,19 +19,20 @@
 
 <ion-content>
   <ion-list>
-    <ion-card *ngFor="let entry of articles" (click)="openArticle(entry)">
-      <div *ngIf="entry.featured_image!==null" class="entryImage" text-center [style.background-image]="'url(' + entry.featured_image.source + ')'">
-      </div>
-      <ion-card-header style="white-space: normal; background-color:#fff;">
-        <b>{{entry.title | htmldecoder}}</b>
-      </ion-card-header> 
-      <ion-row>
-        <ion-col>
-          <p>Published by <b>{{entry.author.name}}</b><br>
-          on {{entry.date | date: 'fullDate'}}</p>
-        </ion-col>
-      </ion-row>
-    </ion-card>
+
+    <ion-item-group>
+        <ion-item-divider color="secondary"></ion-item-divider>
+        <button ion-item *ngFor="let entry of articles" (click)="openArticle(entry)">
+            <ion-thumbnail *ngIf="entry.featured_image!==null" item-end>
+              <img src="{{entry.featured_image.source}}">
+            </ion-thumbnail>
+            <h1 style="white-space: normal">{{ entry.title | htmldecoder }}</h1>
+            <div [innerHTML]="entry.excerpt"></div>
+            <p><i>Published in {{entry.terms.category[0].name | htmldecoder }} by <b>{{entry.author.name}}</b><br>
+            on {{ entry.date | date: 'fullDate' }}</i></p>
+          </button>
+      </ion-item-group>
+
   </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="toInfinityAndBeyond($event)">
