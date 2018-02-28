@@ -1,11 +1,6 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-buttons end>
-        <button ion-button icon-only (click)="goAway()">
-          <ion-icon name="close"></ion-icon> 
-        </button>
-    </ion-buttons>
     <ion-title>Search Results</ion-title>
   </ion-navbar>
 
@@ -22,7 +17,7 @@
   <ion-list>
     <ion-card *ngFor="let article of articles" (click)="openArticle(article)">
       <ion-card-header>
-        <b>{{article.title}}</b>
+        <b>{{article.title | htmldecoder}}</b>
       </ion-card-header> 
       <ion-card-content>
         <b>Author: </b> {{article.author.name}}<br>

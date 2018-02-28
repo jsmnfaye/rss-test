@@ -1,12 +1,15 @@
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar color="light" text-center>
     <!-- <ion-buttons end> -->
       <button ion-button icon-only menuToggle>
         <ion-icon name="menu"></ion-icon> 
       </button>
     <!-- </ion-buttons> -->
     <!-- <ion-title class="headline">Saipan Tribune</ion-title> -->
+
+    <img src="assets/imgs/saipan-logo.png" style="width: 80%;">
+
     <ion-buttons start>
       <button ion-button icon-only (click)="goSearch()" right>
         <ion-icon name="search"></ion-icon> 
@@ -21,9 +24,9 @@
 
   <ion-list>
 
-    <ion-list-header class="top-border" text-center>
+    <!-- <ion-list-header class="top-border" text-center>
       <img src="assets/imgs/saipan-logo.png" style="width: 80%">
-    </ion-list-header>
+    </ion-list-header> -->
 
     <!-- Featured Image -->
     <!-- <ion-item-group *ngIf="featuredImageReady">
@@ -34,12 +37,14 @@
     </ion-item-group> -->
 
     <ion-item-group *ngIf="headlines.length!==0">
-      <ion-item-divider color="secondary">Headlines</ion-item-divider>
+      <ion-item-divider color="primary">Headlines</ion-item-divider>
       <button ion-item *ngFor="let entry of headlines" (click)="openEntry(entry)">
           <ion-thumbnail *ngIf="entry.featured_image!==null" item-end>
             <img src="{{entry.featured_image.source}}">
           </ion-thumbnail>
-          <h1 style="white-space: normal">{{ entry.title | htmldecoder }}</h1>
+          <h1 style="white-space: normal">
+            {{ entry.title | htmldecoder }}
+          </h1>
           <div [innerHTML]="entry.excerpt"></div>
           <p><i>Published in {{entry.terms.category[0].name | htmldecoder }} by <b>{{entry.author.name}}</b><br>
           on {{ entry.date | date: 'fullDate' }}</i></p>
@@ -52,7 +57,9 @@
         <ion-thumbnail *ngIf="entry.featured_image!==null" item-end>
           <img src="{{entry.featured_image.source}}">
         </ion-thumbnail>
-        <h1 style="white-space: normal">{{ entry.title | htmldecoder }}</h1>
+        <h1 style="white-space: normal">
+          {{ entry.title | htmldecoder }}
+        </h1>
         <div [innerHTML]="entry.excerpt"></div>
         <p><i>Published in {{entry.terms.category[0].name | htmldecoder }} by <b>{{entry.author.name}}</b><br>
         on {{ entry.date | date: 'fullDate' }}</i></p>

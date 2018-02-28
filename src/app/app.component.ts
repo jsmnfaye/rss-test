@@ -18,16 +18,16 @@ export class MyApp {
     public menuCtrl: MenuController
   ) {
     this.pages = [
-      {
-          category_name : "Headlines",
-          component :  'HeadlinesPage',
-          slug : "headlines"
-      },
-      {
-          category_name : "Featured",
-          component :  "FeaturedPage",
-          slug : "featured"
-      },
+    //   {
+    //       category_name : "Headlines",
+    //       component :  'HeadlinesPage',
+    //       slug : "headlines"
+    //   },
+    //   {
+    //       category_name : "Featured",
+    //       component :  "FeaturedPage",
+    //       slug : "featured"
+    //   },
       {
           category_name : "Breaking News",
           component :  "BreakingNewsPage",
@@ -92,11 +92,6 @@ export class MyApp {
           category_name : "Biba Marianas!",
           component :  "BibaMarianasPage",
           slug : "biba-marianas"
-      },
-      {
-          category_name: "Fake Page",
-          component: "FakeNewsPage",
-        slug: "fake-news"
       }
   ];
 

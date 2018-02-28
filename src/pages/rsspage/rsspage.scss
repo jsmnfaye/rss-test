@@ -1,8 +1,4 @@
 page-rsspage {
-    .scroll-content {
-        padding-top:0px;
-    }
-
     .main-content{
         background-color: #cfcfcf;
         box-shadow: 0px -1px 13px 1px rgba(0,0,0,0.3);
@@ -24,6 +20,10 @@ page-rsspage {
         background-position: top center;
         background-size: cover;
         height: 200px;
+    }
+
+    h1{
+        font-weight: bolder;
     }
 
     ion-card{

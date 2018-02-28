@@ -28,9 +28,11 @@ export class RsspagePage {
     public alertCtrl: AlertController,
     private rss: RssFeedProvider,
     public adsProvider: AdsProvider
-  ) { this.adsProvider.showAd(); }
+  ) { 
+    // this.adsProvider.showAd(); 
+  }
   
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log(Date());
     let loading = this.loadCtrl.create({
       content: "Fetching latest articles...",
@@ -85,7 +87,7 @@ export class RsspagePage {
   }
 
   goSearch(){
-    this.adsProvider.hideAd();
+    // this.adsProvider.hideAd();
     let searchprompt = this.alertCtrl.create({
       title: 'Search',
       message: 'Enter a keyword you would like to do a search on.',
@@ -100,13 +102,12 @@ export class RsspagePage {
           text: 'Cancel',
           handler: data => {
             console.log('Oops, nevermind.');
-            this.adsProvider.showAd();
+            // this.adsProvider.showAd();
           }
         },
         {
           text: 'Go',
           handler: data => {
-            let searchModal = this.modalCtrl.create('SearchResultPage', { keyword: data.keyword });
             if(data.keyword == ""){
               let alert = this.alertCtrl.create({
                 title: 'Whoa there',
@@ -114,10 +115,10 @@ export class RsspagePage {
                 buttons: ['oops']
               });
               alert.present();
-              this.adsProvider.showAd();
+              // this.adsProvider.showAd();
             } else {
-              searchModal.present();
-              this.adsProvider.showAd();
+              this.navCtrl.push('SearchResultPage', { keyword: data.keyword });
+              // this.adsProvider.showAd();
             }
           }
         }
