@@ -18,10 +18,20 @@
 
 
 <ion-content class="thebody">
+
   <ion-list>
+
     <ion-list-header class="top-border" text-center>
       <img src="assets/imgs/saipan-logo.png" style="width: 80%">
     </ion-list-header>
+
+    <!-- Featured Image -->
+    <!-- <ion-item-group *ngIf="featuredImageReady">
+      <ion-item>
+        <img src="{{featuredImage.source}}"><br>
+        <div [innerHTML]="featuredImage.excerpt" style="white-space: normal"></div>
+      </ion-item>
+    </ion-item-group> -->
 
     <ion-item-group *ngIf="headlines.length!==0">
       <ion-item-divider color="secondary">Headlines</ion-item-divider>
@@ -31,8 +41,8 @@
           </ion-thumbnail>
           <h1 style="white-space: normal">{{ entry.title | htmldecoder }}</h1>
           <div [innerHTML]="entry.excerpt"></div>
-          <p>Published in {{entry.terms.category[0].name | htmldecoder }} by <b>{{entry.author.name}}</b><br>
-          on {{ entry.date | date: 'fullDate' }}</p>
+          <p><i>Published in {{entry.terms.category[0].name | htmldecoder }} by <b>{{entry.author.name}}</b><br>
+          on {{ entry.date | date: 'fullDate' }}</i></p>
         </button>
     </ion-item-group>
 
@@ -44,8 +54,8 @@
         </ion-thumbnail>
         <h1 style="white-space: normal">{{ entry.title | htmldecoder }}</h1>
         <div [innerHTML]="entry.excerpt"></div>
-        <p>Published in {{entry.terms.category[0].name | htmldecoder }} by <b>{{entry.author.name}}</b><br>
-        on {{ entry.date | date: 'fullDate' }}</p>
+        <p><i>Published in {{entry.terms.category[0].name | htmldecoder }} by <b>{{entry.author.name}}</b><br>
+        on {{ entry.date | date: 'fullDate' }}</i></p>
       </button>
     </ion-item-group>
 

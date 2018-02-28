@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, LoadingController, AlertController } from 'ionic-angular';
-import { Http } from '@angular/http';
 
 import { AdsProvider } from '../../providers/ads/ads';
 import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
@@ -18,52 +17,63 @@ export class RsspagePage {
   featured: any[] = [];
   featuredReady: boolean = false;
   category: string = '';
+  featuredImage: any;
+  featuredImageReady: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    public modalCtrl: ModalController, 
-    private http: Http, 
+    public modalCtrl: ModalController,
     public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
     private rss: RssFeedProvider,
     public adsProvider: AdsProvider
   ) { this.adsProvider.showAd(); }
   
-  ionViewWillEnter() {
+  ionViewDidLoad() {
+    console.log(Date());
     let loading = this.loadCtrl.create({
       content: "Fetching latest articles...",
       duration: 3000
     });
-
     loading.present();
-    console.log('Hello, beautiful people of the Philippines!');
 
-    //get headlines
-    this.rss.getTheGoods(this.pageNo, this.category).then(data => {
+    this.getFeaturedImage();
+
+    if((this.featured.length<10)){
+      for(let i = 0; i<10; i++){
+        this.getArticles(this.pageNo);
+      }
+    }
+  }
+
+  getArticles(pageNo: number){
+    this.rss.getTheGoods(pageNo, this.category).then(data => {
       data.forEach(element => {
-        if(element.terms.category[0].name=='Featured'){
+        if(element.terms.category[0].slug=='featured'){
           this.featured.push(element);
         }
-        else if(element.terms.category[0].name=='Headlines'){
+        else if(element.terms.category[0].slug=='headlines'){
           this.headlines.push(element);
         }
       });
-      this.headlineReady = true;
     }, (err) => {
-      let alert = this.alertCtrl.create({
-        title: 'Oops!',
-        message: 'Failed to fetch articles. Sorry about that.',
-        buttons: ['let me check']
-      });
-      alert.present();
-    });
+      console.log('Error getting articles');
+    }); 
+    console.log('Featured length: '+this.featured.length);
+    this.pageNo++;
+  }
 
-    if(this.headlineReady){
-      loading.dismiss();
-      console.log(this.featured);
-      console.log(this.headlines);
-    }
+  getFeaturedImage(){
+    this.rss.getFeaturedImage().then(data => {
+      this.featuredImage = data[0];
+      this.featuredImageReady = true;
+      console.log(this.featuredImageReady);
+      console.log('Featured Image:');
+      console.log(this.featuredImage);
+    }, err => {
+      console.log('Error fetching featured image');
+    });
   }
 
   openEntry(entry){
