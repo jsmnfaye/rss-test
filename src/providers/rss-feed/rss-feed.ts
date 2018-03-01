@@ -12,7 +12,7 @@ export class RssFeedProvider {
   }
   
   getTheGoods(page: number, category: string){
-    console.log('page #'+page);
+    // console.log('page #'+page);
     if(this.data){
       return Promise.resolve(this.data);
     }
@@ -25,13 +25,13 @@ export class RssFeedProvider {
     });
   }
 
-  getFeaturedImage(){
+  getFeaturedImage(pageNo: number){
     if(this.data){
       return Promise.resolve(this.data);
     }
 
     return new Promise(resolve => {
-      this.http.get('https://www.saipantribune.com/index.php/wp-json/media').map(res => res.json()).subscribe(data => {
+      this.http.get('https://www.saipantribune.com/index.php/wp-json/media?page='+pageNo).map(res => res.json()).subscribe(data => {
         this.data = data;
         resolve(this.data);
       });

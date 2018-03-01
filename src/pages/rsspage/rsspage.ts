@@ -20,6 +20,7 @@ export class RsspagePage {
   breaking: any[] = [];
   category: string = '';
   featuredImage: any;
+  imageReady: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -81,20 +82,31 @@ export class RsspagePage {
     }, (err) => {
       console.log('Error getting articles');
     }); 
-    console.log('Featured length: '+this.featured.length);
-    console.log('Breaking length: '+this.breaking.length);
-    console.log('Headlines length: '+this.headlines.length);
+    // console.log('Featured length: '+this.featured.length);
+    // console.log('Breaking length: '+this.breaking.length);
+    // console.log('Headlines length: '+this.headlines.length);
     this.pageNo++;
   }
 
   getFeaturedImage(){
-    this.rss.getFeaturedImage().then(data => {
-      this.featuredImage = data[1];
-      console.log('Featured Image:');
-      console.log(this.featuredImage);
-    }, err => {
-      console.log('Error fetching featured image');
-    });
+    console.log('featured image: '+this.featuredImage);
+    for(let i=1; i<5; i++){
+      if(this.imageReady == false){
+        this.rss.getFeaturedImage(i).then(data => {
+          data.forEach(element => {
+            if(element.slug=='3-1-8'){
+              this.featuredImage = element;
+              this.imageReady = true;
+              console.log('may featured image, fam');
+            }
+          });
+        }, err => {
+          console.log('Error fetching featured image');
+        });
+      }else{
+        console.log('panget mo');
+      }
+    }
   }
 
   openEntry(entry){

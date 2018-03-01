@@ -54,10 +54,10 @@
         </button>
     </ion-item-group>
 
-    <ion-item-group>
+    <ion-item-group *ngIf="featuredImage">
         <ion-item-divider color="secondary">Photo of the Day</ion-item-divider>
         
-        <ion-card *ngIf="featuredImage">
+        <ion-card>
           <img src="{{featuredImage.source}}">
           <ion-card-content>
             <div [innerHTML]="featuredImage.excerpt"></div>
@@ -67,7 +67,7 @@
       </ion-item-group>
 
       <ion-item-group>
-          <ion-item-divider color="secondary">Featured</ion-item-divider>
+          <ion-item-divider color="primary">Featured</ion-item-divider>
           <button ion-item *ngFor="let entry of featured" (click)="openEntry(entry)">
             <ion-thumbnail *ngIf="entry.featured_image!==null" item-end>
               <img src="{{entry.featured_image.source}}">
