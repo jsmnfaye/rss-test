@@ -11,14 +11,15 @@ import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
 })
 export class RsspagePage {
 
+  today: any;
+  date1: any;
   pageNo: number = 1;
   headlines: any[] = [];
   headlineReady: boolean = false;
   featured: any[] = [];
-  featuredReady: boolean = false;
+  breaking: any[] = [];
   category: string = '';
   featuredImage: any;
-  featuredImageReady: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -29,10 +30,13 @@ export class RsspagePage {
     private rss: RssFeedProvider,
     public adsProvider: AdsProvider
   ) { 
+    this.today = new Date().toString().substr(4, 11);
     // this.adsProvider.showAd(); 
   }
   
   ionViewDidLoad() {
+    let today = new Date();
+    console.log(today);
     let loading = this.loadCtrl.create({
       content: "Fetching latest articles...",
       duration: 3000
@@ -41,10 +45,8 @@ export class RsspagePage {
 
     this.getFeaturedImage();
 
-    if((this.featured.length<10)){
-      for(let i = 0; i<10; i++){
-        this.getArticles(this.pageNo);
-      }
+    for(let i = 0; i<30; i++){
+      this.getArticles(this.pageNo);
     }
   }
 
@@ -52,24 +54,42 @@ export class RsspagePage {
     this.rss.getTheGoods(pageNo, this.category).then(data => {
       data.forEach(element => {
         if(element.terms.category[0].slug=='featured'){
-          this.featured.push(element);
+          let entryDate = new Date(element.date).toString().substr(4, 11);
+          if(this.featured.length<4){
+            if(this.today == entryDate){
+              this.featured.push(element);
+            }
+          }
         }
         else if(element.terms.category[0].slug=='headlines'){
-          this.headlines.push(element);
+          if(this.headlines.length<=0){
+            let entryDate = new Date(element.date).toString().substr(4, 11);
+            if(this.today == entryDate){
+              this.headlines.push(element);
+            }
+          }
+        }
+        else if(element.terms.category[0].slug=='breaking-news'){
+          if(this.breaking.length<=0){
+            let entryDate = new Date(element.date).toString().substr(4, 11);
+            if(this.today == entryDate){
+              this.breaking.push(element);
+            }
+          }
         }
       });
     }, (err) => {
       console.log('Error getting articles');
     }); 
     console.log('Featured length: '+this.featured.length);
+    console.log('Breaking length: '+this.breaking.length);
+    console.log('Headlines length: '+this.headlines.length);
     this.pageNo++;
   }
 
   getFeaturedImage(){
     this.rss.getFeaturedImage().then(data => {
-      this.featuredImage = data[0];
-      this.featuredImageReady = true;
-      console.log(this.featuredImageReady);
+      this.featuredImage = data[1];
       console.log('Featured Image:');
       console.log(this.featuredImage);
     }, err => {

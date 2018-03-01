@@ -19,11 +19,6 @@ export class MyApp {
   ) {
     this.pages = [
       {
-          category_name : "Breaking News",
-          component :  "BreakingNewsPage",
-          slug : "breaking-news"
-      },
-      {
           category_name : "Local News",
           component :  "LocalNewsPage",
           slug : "local-news"
