@@ -18,16 +18,6 @@ export class MyApp {
     public menuCtrl: MenuController
   ) {
     this.pages = [
-    //   {
-    //       category_name : "Headlines",
-    //       component :  'HeadlinesPage',
-    //       slug : "headlines"
-    //   },
-    //   {
-    //       category_name : "Featured",
-    //       component :  "FeaturedPage",
-    //       slug : "featured"
-    //   },
       {
           category_name : "Breaking News",
           component :  "BreakingNewsPage",
@@ -78,11 +68,6 @@ export class MyApp {
           component :  "CampusLifePage",
           slug : "campus-life"
       },
-    //   {
-    //       category_name : "Fotogalleria",
-    //       component :  "FotogalleriaPage",
-    //       slug : "fotogalleria"
-    //   },
       {
           category_name : "Pacific",
           component :  "PacificPage",
@@ -107,7 +92,7 @@ export class MyApp {
         pageInfo: page
     };
     console.log(data);
-    this.nav.setRoot('CategoryPage', data);
+    this.nav.push('CategoryPage', data);
     this.menuCtrl.close();
   }
 

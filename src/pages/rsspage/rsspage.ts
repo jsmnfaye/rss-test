@@ -32,8 +32,7 @@ export class RsspagePage {
     // this.adsProvider.showAd(); 
   }
   
-  ionViewWillEnter() {
-    console.log(Date());
+  ionViewDidLoad() {
     let loading = this.loadCtrl.create({
       content: "Fetching latest articles...",
       duration: 3000
