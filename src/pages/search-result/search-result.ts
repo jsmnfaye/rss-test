@@ -12,6 +12,7 @@ export class SearchResultPage {
   keyword: any = '';
   pageReady: boolean = false;
   noResults: boolean = false;
+  easterEgg: boolean = false;
   articles: any[] = [];
   goods: any;
   pageNo: number = 1;
@@ -38,6 +39,11 @@ export class SearchResultPage {
       loading.dismiss();
       if (this.articles.length == 0){
         this.noResults = true;
+      } 
+      
+      if(this.keyword == "faye atendido"){
+        this.noResults = false;
+        this.easterEgg = true;
       }
     }, (err) => {
       let alert = this.alerter.create({

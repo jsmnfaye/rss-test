@@ -12,7 +12,6 @@ export class RssFeedProvider {
   }
   
   getTheGoods(page: number, category: string){
-    // console.log('page #'+page);
     if(this.data){
       return Promise.resolve(this.data);
     }

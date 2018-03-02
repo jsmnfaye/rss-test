@@ -1,12 +1,21 @@
+<!-- 
+
+     === HOME PAGE ===
+
+     This is the first page the user enters when they open the app (the splash screen is not considered a page, right?). It shows breaking news (if any), headlines, featured news, and the photo of the day. A fixed number of articles appear on here every day.
+
+     Ion header contains a menu button on the left for toggling the side menu, and a search icon on the right for searching articles according to a keyword.   
+
+     Suggestion: add a "pull to refresh" function
+
+ -->
+
 <ion-header>
 
   <ion-navbar color="light" text-center>
-    <!-- <ion-buttons end> -->
-      <button ion-button icon-only menuToggle>
-        <ion-icon name="menu"></ion-icon> 
-      </button>
-    <!-- </ion-buttons> -->
-    <!-- <ion-title class="headline">Saipan Tribune</ion-title> -->
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon> 
+    </button>
 
     <img src="assets/imgs/saipan-logo.png" style="width: 80%;">
 
@@ -19,8 +28,10 @@
 
 </ion-header>
 
-
+<!-- It's usually helpful to give the ion content a class name if you want to customize it further. This practice saves you from a lot of headaches in the future.  -->
 <ion-content class="thebody">
+
+  <!-- I used a list with ion item groups to show different categories of articles. Angular Ifs were used to make sure the sections don't appear in case it fails to load data. -->
 
   <ion-list>
 
