@@ -66,16 +66,15 @@
     </ion-item-group>
 
     <ion-item-group *ngIf="featuredImage">
-        <ion-item-divider color="secondary">Photo of the Day</ion-item-divider>
-        
-        <ion-card>
-          <img src="{{featuredImage.source}}">
-          <ion-card-content>
-            <div [innerHTML]="featuredImage.excerpt"></div>
-          </ion-card-content>
-        </ion-card>
-
-      </ion-item-group>
+      <ion-item-divider color="secondary">Photo of the Day</ion-item-divider>
+      
+      <ion-card>
+        <img src="{{featuredImage.source}}">
+        <ion-card-content>
+          <div [innerHTML]="featuredImage.excerpt"></div>
+        </ion-card-content>
+      </ion-card>
+    </ion-item-group>
 
       <ion-item-group>
           <ion-item-divider color="primary">Featured</ion-item-divider>

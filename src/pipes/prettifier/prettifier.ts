@@ -10,7 +10,7 @@ export class PrettifierPipe implements PipeTransform {
   transform(val, ...args) {
 
     if(val.substring(0, 4) == "<div"){
-      val = val.split("<p class=\"wp-caption-text\">")[1];  
+      val = val.split("<p class=\"wp-caption-text\">")[1];
     }
 
     // ^ you can add .length instead of index 0 to get array length

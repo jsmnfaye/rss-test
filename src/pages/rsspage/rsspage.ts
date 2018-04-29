@@ -12,10 +12,8 @@ import { RssFeedProvider } from '../../providers/rss-feed/rss-feed';
 export class RsspagePage {
 
   today: any;
-  date1: any;
   pageNo: number = 1;
   headlines: any[] = [];
-  headlineReady: boolean = false;
   featured: any[] = [];
   breaking: any[] = [];
   category: string = '';
@@ -35,8 +33,6 @@ export class RsspagePage {
   }
   
   ionViewDidLoad() {
-    let today = new Date();
-    console.log(today);
     let loading = this.loadCtrl.create({
       content: "Fetching latest articles...",
       duration: 3000

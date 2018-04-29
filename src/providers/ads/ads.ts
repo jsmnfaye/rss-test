@@ -10,7 +10,7 @@ export class AdsProvider {
   showAd(){
     const bannerConfig: AdMobFreeBannerConfig = {
       id: 'ca-app-pub-2098547412274378/6069518286',
-      isTesting: false, //change to FALSE if building for production
+      isTesting: true, //change to FALSE if building for production
       autoShow: true,
       bannerAtTop: false 
     };

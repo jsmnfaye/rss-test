@@ -9,7 +9,6 @@ import { Http } from '@angular/http';
 })
 export class CategoryPage {
 
-  pageReady: boolean = false;
   category: any = '';
   articles: any[] = [];
   goods: any;
