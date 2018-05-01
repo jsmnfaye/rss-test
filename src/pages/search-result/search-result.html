@@ -13,7 +13,6 @@
   </ion-item>
 
   <h4 *ngIf="noResults" text-center>No results found.</h4>
-  <h4 *ngIf="easterEgg" text-center>Blazifay 420</h4>
 
   <ion-list>
     <ion-card *ngFor="let article of articles" (click)="openArticle(article)">

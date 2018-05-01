@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, NavController, LoadingController, AlertController, ViewController } from 'ionic-angular';
+import { IonicPage, NavParams, NavController, LoadingController, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 @IonicPage()
@@ -10,9 +10,7 @@ import { Http } from '@angular/http';
 export class SearchResultPage {
 
   keyword: any = '';
-  pageReady: boolean = false;
   noResults: boolean = false;
-  easterEgg: boolean = false;
   articles: any[] = [];
   goods: any;
   pageNo: number = 1;
@@ -23,7 +21,6 @@ export class SearchResultPage {
     public http: Http,
     private loader: LoadingController,
     private alerter: AlertController,
-    private viewCtrl: ViewController,
     public navCtrl: NavController
   ) {  }
 
@@ -40,11 +37,6 @@ export class SearchResultPage {
       if (this.articles.length == 0){
         this.noResults = true;
       } 
-      
-      if(this.keyword == "faye atendido"){
-        this.noResults = false;
-        this.easterEgg = true;
-      }
     }, (err) => {
       let alert = this.alerter.create({
         title: 'Oops!',
@@ -105,10 +97,6 @@ export class SearchResultPage {
     };
 
     this.navCtrl.push('EntryPage', data);
-  }
-
-  goAway(){
-    this.viewCtrl.dismiss();
   }
 
 }

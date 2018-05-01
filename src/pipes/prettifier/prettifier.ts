@@ -5,15 +5,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PrettifierPipe implements PipeTransform {
   /**
-   * Takes a value and makes it lowercase.
+   * Deletes unnecessary HTML code from the content
+   * key taken from JSON file from server hahaha
    */
   transform(val, ...args) {
 
     if(val.substring(0, 4) == "<div"){
       val = val.split("<p class=\"wp-caption-text\">")[1];
     }
-
-    // ^ you can add .length instead of index 0 to get array length
 
     return val;
   }
